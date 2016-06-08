@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dip"
+        android:layout_marginRight="60dip"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textColor="#ffffff"
+            android:text="Make the world smaller."/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:text="账号: "/>
+            <EditText
+                android:id="@+id/tx_account"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:hint="请输入账号"
+                android:background="@drawable/input_normal"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:text="密码: "/>
+            <EditText
+                android:id="@+id/tx_password"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:background="@drawable/input_normal"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_register"
+                android:layout_width="110dip"
+                android:layout_height="35dip"
+                android:background="@drawable/login_button1"
+                android:gravity="center"
+                android:text="注册" />
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="110dip"
+                android:layout_height="35dip"
+                android:background="@drawable/login_btn_selector"
+                android:gravity="center"
+                android:text="登陆" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
