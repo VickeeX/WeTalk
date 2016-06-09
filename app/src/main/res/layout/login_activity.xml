@@ -27,7 +27,7 @@
                 android:textColor="#ffffff"
                 android:text="账号: "/>
             <EditText
-                android:id="@+id/tx_account"
+                android:id="@+id/et_account"
                 android:layout_width="200dip"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -45,7 +45,7 @@
                 android:textColor="#ffffff"
                 android:text="密码: "/>
             <EditText
-                android:id="@+id/tx_password"
+                android:id="@+id/et_password"
                 android:layout_width="200dip"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
