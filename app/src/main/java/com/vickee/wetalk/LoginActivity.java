@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 
 /**
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onSuccess(LoginInfo loginInfo) {
                 // the auto-login can be realized here
 
+                DemoCache.setAccount(account);
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName(LoginActivity.this, MainActivity.class));
                 startActivity(intent);
@@ -63,6 +66,6 @@ public class LoginActivity extends AppCompatActivity{
 
             }
         };
-
+        NIMClient.getService(AuthService.class).login(loginInfo).setCallback(callback);
     }
 }

@@ -10,7 +10,7 @@
     tools:context="com.vickee.wetalk.MainActivity">
 
     <TextView
+        android:id="@+id/account_show"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="wrap_content" />
 </RelativeLayout>
