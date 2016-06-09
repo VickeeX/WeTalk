@@ -1,9 +1,13 @@
 package com.vickee.wetalk;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +23,8 @@ import com.netease.nimlib.sdk.auth.LoginInfo;
  * Created by Vickee on 2016/6/8.
  */
 public class LoginActivity extends AppCompatActivity{
+
+    private static final String TAG = "LoginActivity";
 
     private Button login_btn;
     private Button register_btn;
@@ -38,18 +44,20 @@ public class LoginActivity extends AppCompatActivity{
         login_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                final String account = account_et.getText().toString().toLowerCase();
-                final String password = password_et.getText().toString().toLowerCase();
+                final String account = account_et.getText().toString();
+                String token = password_et.getText().toString();
+                Log.e(TAG, "onClick() called with: [" + token + "]");
+//                token = MD5.getStringMD5(token);
 
-                LoginInfo loginInfo = new LoginInfo(account,password);
+                LoginInfo loginInfo = new LoginInfo(account, token, "048bb61b76c7b682a040589998446181");
                 RequestCallback<LoginInfo> callback = new RequestCallback<LoginInfo>() {
                     @Override
                     public void onSuccess(LoginInfo loginInfo) {
                         // the auto-login can be realized here
+                        Log.d(TAG, "onSuccess() called with: " + "loginInfo = [" + loginInfo + "]");
 
                         DemoCache.setAccount(account);
-                        Intent intent = new Intent();
-                        intent.setComponent(new ComponentName(LoginActivity.this, MainActivity.class));
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -68,5 +76,22 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
     }
+    private String tokenFromPassword(String password) {
+        String appKey = readAppKey(this);
+        boolean isDemo = ("048bb61b76c7b682a040589998446181").equals(appKey);
+        return isDemo ? MD5.getStringMD5(password) : password;
+    }
 
+    private static String readAppKey(Context context) {
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().
+                    getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            if (appInfo != null) {
+                return appInfo.metaData.getString("com.vickee.wetalk.appKey");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
