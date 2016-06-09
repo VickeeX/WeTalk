@@ -25,12 +25,13 @@
     <uses-permission android:name="com.vickee.wetalk.permission.RECEIVE_MSG"/>
 
     <application
+        android:name=".WeTalkApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.vickee.wetalk.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
