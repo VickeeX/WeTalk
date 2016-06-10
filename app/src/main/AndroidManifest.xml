@@ -3,26 +3,25 @@
     package="com.vickee.wetalk">
 
     <!-- 权限声明 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <permission
         android:name="com.vickee.wetalk.permission.RECEIVE_MSG"
-        android:protectionLevel="signature"/>
-    <uses-permission android:name="com.vickee.wetalk.permission.RECEIVE_MSG"/>
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.vickee.wetalk.permission.RECEIVE_MSG" />
 
     <application
         android:name=".WeTalkApplication"
@@ -31,7 +30,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.vickee.wetalk.LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +42,7 @@
         <!-- appKey -->
         <meta-data
             android:name="com.vickee.wetalk.appKey"
-            android:value="048bb61b76c7b682a040589998446181"/>
+            android:value="048bb61b76c7b682a040589998446181" />
 
         <!-- 声明使用后台服务 -->
         <service
@@ -51,38 +50,36 @@
             android:process=":core" />
         <service
             android:name="com.netease.nimlib.service.NimService$Aux"
-            android:process=":core"/>
+            android:process=":core" />
 
         <receiver
             android:name="com.netease.nimlib.service.NimReceiver"
-            android:process=":core"
-            android:exported="false">
+            android:exported="false"
+            android:process=":core">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name="com.netease.nimlib.service.ResponseReceiver"/>
+        <receiver android:name="com.netease.nimlib.service.ResponseReceiver" />
 
         <service
             android:name="com.netease.cosine.core.CosineService"
-            android:process=":cosine">
-        </service>
+            android:process=":cosine"></service>
 
         <receiver
             android:name="com.netease.cosine.target.CosineReceiver"
             android:exported="true"
-            android:process=":cosine">
-        </receiver>
+            android:process=":cosine"></receiver>
 
         <meta-data
             android:name="com.netease.cosine.target"
-            android:value=""/>
+            android:value="" />
         <meta-data
             android:name="com.netease.cosine.target.receiver"
-            android:value="com.netease.nimlib.service.NimReceiver"/>
+            android:value="com.netease.nimlib.service.NimReceiver" />
 
+        <activity android:name=".TalkUserActivity"></activity>
     </application>
 
 </manifest>
