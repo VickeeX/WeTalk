@@ -8,5 +8,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vickee.wetalk.TalkUserActivity">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/msgText_et"
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/senMsg_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </RelativeLayout>
