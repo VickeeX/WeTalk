@@ -14,8 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
-        android:id="@+id/talkUser"
+        android:id="@+id/talkUser1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="talk to andothere user"/>
+        android:text="talk to user1"/>
+    <Button
+        android:id="@+id/talkUser2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="talk to user2"/>
 </RelativeLayout>

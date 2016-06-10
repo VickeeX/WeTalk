@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         TextView account_show = (TextView)findViewById(R.id.account_show);
         account_show.setText(DemoCache.getAccount());
 
-        talkUser = (Button)findViewById(R.id.talkUser);
+        talkUser = (Button)findViewById(R.id.talkUser1);
         talkUser.setOnClickListener(new View.OnClickListener(){
             @Override
            public void onClick(View v){
