@@ -14,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView account_show = (TextView)findViewById(R.id.account_show);
-        account_show.setText(DemoCache.getAccount());
 
     }
 }
