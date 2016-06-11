@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_main_top"/>
-
     <FrameLayout
         android:id="@+id/f1_content"
         android:layout_width="match_parent"
