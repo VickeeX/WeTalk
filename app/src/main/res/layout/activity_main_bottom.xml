@@ -14,15 +14,14 @@
         <ImageView
             android:id="@+id/recentTalk_iv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/recentTalk_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="消息"
-            android:textColor="#ffffff"
+            android:textColor="#1B940A"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -36,8 +35,7 @@
         <ImageView
             android:id="@+id/friends_iv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/friends_tv"
             android:layout_width="wrap_content"
@@ -58,8 +56,7 @@
         <ImageView
             android:id="@+id/team_iv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/team_tv"
             android:layout_width="wrap_content"
