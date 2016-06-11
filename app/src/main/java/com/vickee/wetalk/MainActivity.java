@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         recent_ll.setOnClickListener(listener);
         friends_ll.setOnClickListener(listener);
         team_ll.setOnClickListener(listener);
+
+        initFragment(0);
     }
 
     private void initFragment(int index){
