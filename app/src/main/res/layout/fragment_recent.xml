@@ -5,9 +5,9 @@
     tools:context="com.vickee.wetalk.RecentFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/recentTalk_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="recent fragment" />
+        android:layout_height="match_parent"></ListView>
 
 </FrameLayout>
