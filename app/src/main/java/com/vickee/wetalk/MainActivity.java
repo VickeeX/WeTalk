@@ -2,18 +2,17 @@ package com.vickee.wetalk;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
     private LinearLayout recent_ll;
     private LinearLayout friends_ll;
@@ -48,42 +47,10 @@ public class MainActivity extends AppCompatActivity {
         friends_tv = (TextView)findViewById(R.id.friends_tv);
         team_tv = (TextView)findViewById(R.id.team_tv);
 
-        View.OnClickListener listener = new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                restartButton();
-                switch (v.getId()){
-                    case R.id.recentTalk_ll:
-/*
-                recent_iv.setImageResource(R.drawable.pressed);
-*/
-                        recent_tv.setTextColor(0xff1B940A);
-                        initFragment(0);
-                        break;
-                    case R.id.friends_ll:
-/*
-                friends_iv.setImageResource(R.drawable.pressed);
-*/
-                        friends_tv.setTextColor(0xff1B940A);
-                        initFragment(1);
-                        break;
-                    case R.id.team_ll:
-/*
-                team_iv.setImageResource(R.drawable.pressed);
-*/
-                        team_tv.setTextColor(0xff1B940A);
-                        initFragment(2);
-                        break;
-                    default:
-                        break;
-                }
 
-            }
-        };
-
-        recent_ll.setOnClickListener(listener);
-        friends_ll.setOnClickListener(listener);
-        team_ll.setOnClickListener(listener);
+        recent_ll.setOnClickListener(this);
+        friends_ll.setOnClickListener(this);
+        team_ll.setOnClickListener(this);
 
         initFragment(0);
     }
@@ -143,6 +110,30 @@ public class MainActivity extends AppCompatActivity {
         recent_tv.setTextColor(0xffffffff);
         friends_tv.setTextColor(0xffffffff);
         team_tv.setTextColor(0xffffffff);
+    }
+
+    @Override
+    public void onClick(View v) {
+        restartButton();
+        switch (v.getId()) {
+            case R.id.recentTalk_ll:
+//                recent_iv.setImageResource(R.drawable.pressed);
+                recent_tv.setTextColor(0xff1B940A);
+                initFragment(0);
+                break;
+            case R.id.friends_ll:
+//                friends_iv.setImageResource(R.drawable.pressed);
+                friends_tv.setTextColor(0xff1B940A);
+                initFragment(1);
+                break;
+            case R.id.team_ll:
+//                team_iv.setImageResource(R.drawable.pressed);
+                team_tv.setTextColor(0xff1B940A);
+                initFragment(2);
+                break;
+            default:
+                break;
+        }
     }
 
 }
