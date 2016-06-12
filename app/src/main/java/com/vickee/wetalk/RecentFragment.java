@@ -35,8 +35,6 @@ public class RecentFragment extends Fragment {
 
     private List<RecentContact> recentContactList;
 
-    private ListView recent_lv;
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -81,6 +79,8 @@ public class RecentFragment extends Fragment {
                         recentContactList = recents;
                     }
                 });
+
+
     }
 
 
@@ -95,7 +95,6 @@ public class RecentFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recent_lv = (ListView)view.findViewById(R.id.recentTalk_lv);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
