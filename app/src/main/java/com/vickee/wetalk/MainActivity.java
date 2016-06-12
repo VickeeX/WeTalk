@@ -1,6 +1,7 @@
 package com.vickee.wetalk;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +12,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
+public class MainActivity extends FragmentActivity implements View.OnClickListener
+        , RecentFragment.OnFragmentInteractionListener
+        , FriendsFragment.OnFragmentInteractionListener
+        , TeamFragment.OnFragmentInteractionListener{
 
     private LinearLayout recent_ll;
     private LinearLayout friends_ll;
@@ -136,6 +141,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri){
+        Toast.makeText(this,"test onFragmentInteractionListener",Toast.LENGTH_LONG).show();
+    }
 }
 
 
