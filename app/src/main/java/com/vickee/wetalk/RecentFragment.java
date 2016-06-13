@@ -76,12 +76,16 @@ public class RecentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        recentContactList = new ArrayList<>();
+
         NIMClient.getService(MsgService.class).queryRecentContacts()
                 .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
                     @Override
                     public void onResult(int code, List<RecentContact> recents, Throwable e) {
                         // recents参数即为最近会话列表
                         recentContactList = recents;
+                        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(),recentContactList);
+                        recyclerView.setAdapter(adapter);
                     }
                 });
     }
@@ -107,18 +111,8 @@ public class RecentFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
 
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), recentContactList));
-    }
+
 
     @Override
     public void onDetach() {
