@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.netease.nimlib.sdk.msg.model.RecentContact;
-import com.netease.nrtc.engine.rawapi.toolbox.Ringer;
 
 import java.util.List;
 
@@ -33,8 +32,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     @Override
     public void onBindViewHolder(MyRecyclerAdapter.MyViewHolder holder, int position) {
-        holder.account.setText(mDatas.get(position).getContactId());
-        holder.content.setText(mDatas.get(position).getContent());
+
+        if(mDatas.get(position).getContactId() != null){
+            holder.account.setText(mDatas.get(position).getContactId());
+        }
+        if(mDatas.get(position).getContent() != null){
+            holder.content.setText(mDatas.get(position).getContent());
+        }
     }
 
     @Override

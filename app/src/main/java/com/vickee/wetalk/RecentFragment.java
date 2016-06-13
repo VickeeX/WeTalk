@@ -84,8 +84,6 @@ public class RecentFragment extends Fragment {
                         recentContactList = recents;
                     }
                 });
-
-        recyclerView.setAdapter(new MyRecyclerAdapter(this, recentContactList));
     }
 
 
@@ -114,10 +112,12 @@ public class RecentFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
+
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), recentContactList));
     }
 
     @Override
