@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         , FriendsFragment.OnFragmentInteractionListener
         , TeamFragment.OnFragmentInteractionListener{
 
+    private ImageButton search_button;
     private LinearLayout recent_ll;
     private LinearLayout friends_ll;
     private LinearLayout team_ll;
@@ -40,6 +42,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        search_button = (ImageButton)findViewById(R.id.search_btn);
+
         recent_ll = (LinearLayout)findViewById(R.id.recentTalk_ll);
         friends_ll = (LinearLayout)findViewById(R.id.friends_ll);
         team_ll = (LinearLayout) findViewById(R.id.team_ll);
@@ -51,6 +55,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         recent_tv = (TextView)findViewById(R.id.recentTalk_tv);
         friends_tv = (TextView)findViewById(R.id.friends_tv);
         team_tv = (TextView)findViewById(R.id.team_tv);
+
 
 
         recent_ll.setOnClickListener(this);
