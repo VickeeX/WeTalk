@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,7 +42,8 @@ public class FriendsFragment extends Fragment {
     private TextView test_friends_tv;
     private List<String> friends;
     private RecyclerView recyclerView;
-
+    private MyAdapter adapter;
+    private FriendsListAdapter friendsListAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -80,6 +82,7 @@ public class FriendsFragment extends Fragment {
         }
 
         friends = new ArrayList<>();
+        friendsListAdapter = new FriendsListAdapter(getActivity());
     }
 
     @Override
@@ -93,13 +96,14 @@ public class FriendsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.friendsList_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(friendsListAdapter);
 
         friends = NIMClient.getService(FriendService.class).getFriendAccounts();
         Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
-
-        FriendsListAdapter adapter = new FriendsListAdapter(getActivity(),friends);
-        recyclerView.setAdapter(adapter);
-
+//        adapter.UpdateAdapterData(friends);
+        friendsListAdapter.UpdateAdapterData(friends);
         test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
         boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
         if(isMyFriend){
@@ -112,11 +116,11 @@ public class FriendsFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     @Override
     public void onDetach() {

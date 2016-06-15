@@ -2,53 +2,65 @@ package com.vickee.wetalk;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Vickee on 2016/6/15.
  */
-public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.MyViewHolder>{
+public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.mViewHolder>{
 
     private List<String> mDatas;
     private Context mContext;
-    private LayoutInflater inflater;
 
-    public FriendsListAdapter(Context context, List<String> datas){
+
+    public FriendsListAdapter(Context context){
         this.mContext = context;
-        this.mDatas = datas;
-        inflater = LayoutInflater.from(mContext);
+        mDatas = new ArrayList<>();
     }
 
     @Override
-    public int getItemCount(){
+    public mViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new mViewHolder(LayoutInflater.from(mContext).inflate(R.layout.friends_item,null));
+    }
+
+    @Override
+    public void onBindViewHolder(mViewHolder holder, int position) {
+        holder.textView.setText(mDatas.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
         return mDatas.size();
     }
 
-    @Override
-    public void onBindViewHolder(FriendsListAdapter.MyViewHolder holder, int position) {
-        holder.account.setText(mDatas.get(position));
+    class mViewHolder extends RecyclerView.ViewHolder {
+    public TextView textView;
+
+    public mViewHolder(View itemView) {
+        super(itemView);
+        textView = (TextView) itemView.findViewById(R.id.friends_item_tv);
+        Log.e("FriendsERROR","new viewholder");
+//        textView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText("xid="+getPosition())
+//            }
+//        });
     }
+}
 
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = inflater.inflate(R.layout.friends_item,parent,false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+    public void UpdateAdapterData(List<String> datas){
+        mDatas.clear();
+        mDatas.addAll(datas);
+        Log.e("FriendsERROR","size="+mDatas.size());
+        notifyDataSetChanged();
     }
-
-
-    class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView account;
-
-        public MyViewHolder(View view){
-            super(view);
-            account = (TextView)view.findViewById(R.id.friends_item_tv);
-        }
-    }
-
 }
