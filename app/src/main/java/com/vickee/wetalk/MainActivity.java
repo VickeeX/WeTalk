@@ -1,12 +1,10 @@
 package com.vickee.wetalk;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,12 +13,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.friend.FriendService;
+import com.netease.nimlib.sdk.friend.constant.VerifyType;
+import com.netease.nimlib.sdk.friend.model.AddFriendData;
+
 public class MainActivity extends FragmentActivity implements View.OnClickListener
         , RecentFragment.OnFragmentInteractionListener
         , FriendsFragment.OnFragmentInteractionListener
         , TeamFragment.OnFragmentInteractionListener{
 
     private ImageButton search_button;
+
     private LinearLayout recent_ll;
     private LinearLayout friends_ll;
     private LinearLayout team_ll;
@@ -56,6 +61,32 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         friends_tv = (TextView)findViewById(R.id.friends_tv);
         team_tv = (TextView)findViewById(R.id.team_tv);
 
+        final VerifyType verifyType = VerifyType.DIRECT_ADD;
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NIMClient.getService(FriendService.class)
+                        .addFriend(new AddFriendData("vickee",verifyType,""))
+                        .setCallback(new RequestCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(getApplicationContext(),
+                                        "添加好友成功",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailed(int i) {
+                                Toast.makeText(getApplicationContext(),
+                                        "添加好友失败",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onException(Throwable throwable) {
+
+                            }
+                        });
+            }
+        });
 
 
         recent_ll.setOnClickListener(this);
