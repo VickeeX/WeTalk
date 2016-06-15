@@ -6,13 +6,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.friend.FriendService;
+import com.netease.nimlib.sdk.friend.FriendServiceObserve;
+import com.netease.nimlib.sdk.friend.model.Friend;
+import com.netease.nimlib.sdk.friend.model.FriendChangedNotify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +38,7 @@ public class FriendsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private TextView test_friends_tv;
     private List<String> friends;
     private RecyclerView recyclerView;
 
@@ -73,7 +80,6 @@ public class FriendsFragment extends Fragment {
         }
 
         friends = new ArrayList<>();
-        friends = NIMClient.getService(FriendService.class).getFriendAccounts();
     }
 
     @Override
@@ -88,8 +94,21 @@ public class FriendsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.friendsList_rv);
 
+        friends = NIMClient.getService(FriendService.class).getFriendAccounts();
+        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
+
         FriendsListAdapter adapter = new FriendsListAdapter(getActivity(),friends);
         recyclerView.setAdapter(adapter);
+
+        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
+        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
+        if(isMyFriend){
+            test_friends_tv.setText("添加新好友，请刷新列表");
+        }
+        else{
+            test_friends_tv.setText("暂无更新");
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
