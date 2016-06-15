@@ -109,9 +109,6 @@ public class RecentFragment extends Fragment {
         }
     }
 
-
-
-
     @Override
     public void onDetach() {
         super.onDetach();

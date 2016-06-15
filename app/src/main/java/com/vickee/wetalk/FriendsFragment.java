@@ -74,8 +74,8 @@ public class FriendsFragment extends Fragment {
         friends = new ArrayList<>();
         friends = NIMClient.getService(FriendService.class).getFriendAccounts();
 
-//        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(),friends);
-//        recyclerView.setAdapter(adapter);
+        FriendsListAdapter adapter = new FriendsListAdapter(getActivity(),friends);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
