@@ -39,7 +39,7 @@ public class FriendsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private TextView test_friends_tv;
+//    private TextView test_friends_tv;
     private List<String> friends;
     private RecyclerView recyclerView;
     private MyAdapter adapter;
@@ -104,14 +104,14 @@ public class FriendsFragment extends Fragment {
         Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
 //        adapter.UpdateAdapterData(friends);
         friendsListAdapter.UpdateAdapterData(friends);
-        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
-        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
-        if(isMyFriend){
-            test_friends_tv.setText("添加新好友");
-        }
-        else{
-            test_friends_tv.setText("暂无更新");
-        }
+//        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
+//        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
+//        if(isMyFriend){
+//            test_friends_tv.setText("添加新好友");
+//        }
+//        else{
+//            test_friends_tv.setText("暂无更新");
+//        }
 
     }
 

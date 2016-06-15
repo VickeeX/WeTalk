@@ -28,7 +28,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public mViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new mViewHolder(LayoutInflater.from(mContext).inflate(R.layout.friends_item,null));
+        return new mViewHolder(LayoutInflater.from(mContext)
+                .inflate(R.layout.friends_item,parent,false));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public mViewHolder(View itemView) {
         super(itemView);
         textView = (TextView) itemView.findViewById(R.id.friends_item_tv);
-        Log.e("FriendsERROR","new viewholder");
+        Log.e("Friends: ","new viewholder");
 //        textView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -60,7 +61,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public void UpdateAdapterData(List<String> datas){
         mDatas.clear();
         mDatas.addAll(datas);
-        Log.e("FriendsERROR","size="+mDatas.size());
+        Log.e("Friends: ","size="+mDatas.size());
         notifyDataSetChanged();
     }
 }
