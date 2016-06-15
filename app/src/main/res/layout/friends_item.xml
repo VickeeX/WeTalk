@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:textColor="@color/colorPrimary"
+        android:textColor="#3366CC"
         android:id="@+id/friends_item_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

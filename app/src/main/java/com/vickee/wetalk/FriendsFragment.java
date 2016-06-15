@@ -103,7 +103,7 @@ public class FriendsFragment extends Fragment {
         test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
         boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
         if(isMyFriend){
-            test_friends_tv.setText("添加新好友，请刷新列表");
+            test_friends_tv.setText("添加新好友");
         }
         else{
             test_friends_tv.setText("暂无更新");
