@@ -93,7 +93,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         friends_ll.setOnClickListener(this);
         team_ll.setOnClickListener(this);
 
-        initFragment(1);
+        initFragment(0);
     }
 
     private void initFragment(int index){
