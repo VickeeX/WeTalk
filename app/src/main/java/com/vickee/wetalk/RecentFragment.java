@@ -73,16 +73,6 @@ public class RecentFragment extends Fragment {
 
         recentContactList = new ArrayList<>();
 
-        NIMClient.getService(MsgService.class).queryRecentContacts()
-                .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
-                    @Override
-                    public void onResult(int code, List<RecentContact> recents, Throwable e) {
-                        // recents参数即为最近会话列表
-                        recentContactList = recents;
-                        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(),recentContactList);
-                        recyclerView.setAdapter(adapter);
-                    }
-                });
     }
 
 
@@ -97,6 +87,17 @@ public class RecentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
+
+        NIMClient.getService(MsgService.class).queryRecentContacts()
+                .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
+                    @Override
+                    public void onResult(int code, List<RecentContact> recents, Throwable e) {
+                        // recents参数即为最近会话列表
+                        recentContactList = recents;
+                        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(),recentContactList);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

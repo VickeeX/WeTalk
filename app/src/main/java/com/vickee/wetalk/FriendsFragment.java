@@ -73,9 +73,6 @@ public class FriendsFragment extends Fragment {
 
         friends = new ArrayList<>();
         friends = NIMClient.getService(FriendService.class).getFriendAccounts();
-
-        FriendsListAdapter adapter = new FriendsListAdapter(getActivity(),friends);
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -89,6 +86,9 @@ public class FriendsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.friendsList_rv);
+
+        FriendsListAdapter adapter = new FriendsListAdapter(getActivity(),friends);
+        recyclerView.setAdapter(adapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
