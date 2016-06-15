@@ -37,8 +37,6 @@ public class RecentFragment extends Fragment {
 
     private List<RecentContact> recentContactList;
     private RecyclerView recyclerView;
-//    private MyRecyclerAdapter recyclerAdapter;
-
 
     // TODO: Rename and change types of parameters
     private String mParam1;
