@@ -28,21 +28,21 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
 
     @Override
     public int getItemCount(){
-        return 5;
-//        return mDatas.size();
+        return mDatas.size();
     }
 
     @Override
     public void onBindViewHolder(MyRecyclerAdapter.mViewHolder holder, int position) {
 
-        holder.account.setText("xxxxxx");
-        holder.content.setText("xxxxxx");
-//        if(mDatas.get(position).getContactId() != null){
-//            holder.account.setText(mDatas.get(position).getContactId());
-//        }
-//        if(mDatas.get(position).getContent() != null){
-//            holder.content.setText(mDatas.get(position).getContent());
-//        }
+//        holder.account.setText("xxxxxx");
+        holder.content.setText("xxxxxxxxxxxx");
+
+        holder.account.setText(mDatas.get(position).getContactId());
+        if(mDatas.get(position).getContent() != null){
+            holder.content.setText(mDatas.get(position).getContent());
+        }else{
+            holder.content.setText("暂无最近消息");
+        }
     }
 
     @Override
