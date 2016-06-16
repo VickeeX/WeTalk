@@ -42,7 +42,7 @@ public class FriendsFragment extends Fragment {
 //    private TextView test_friends_tv;
     private List<String> friends;
     private RecyclerView recyclerView;
-    private MyAdapter adapter;
+//    private MyAdapter adapter;
     private FriendsListAdapter friendsListAdapter;
 
     // TODO: Rename and change types of parameters
@@ -97,12 +97,10 @@ public class FriendsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.friendsList_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recyclerView.setAdapter(adapter);
         recyclerView.setAdapter(friendsListAdapter);
 
         friends = NIMClient.getService(FriendService.class).getFriendAccounts();
         Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
-//        adapter.UpdateAdapterData(friends);
         friendsListAdapter.UpdateAdapterData(friends);
 //        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
 //        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");

@@ -4,7 +4,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,7 @@ public class RecentFragment extends Fragment {
 
     private List<RecentContact> recentContactList;
     private RecyclerView recyclerView;
+    private MyRecyclerAdapter myRecyclerAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -72,6 +75,7 @@ public class RecentFragment extends Fragment {
         }
 
         recentContactList = new ArrayList<>();
+        myRecyclerAdapter = new MyRecyclerAdapter(getActivity());
 
     }
 
@@ -87,6 +91,8 @@ public class RecentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(myRecyclerAdapter);
 
         NIMClient.getService(MsgService.class).queryRecentContacts()
                 .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
@@ -94,8 +100,11 @@ public class RecentFragment extends Fragment {
                     public void onResult(int code, List<RecentContact> recents, Throwable e) {
                         // recents参数即为最近会话列表
                         recentContactList = recents;
-                        MyRecyclerAdapter adapter = new MyRecyclerAdapter(getActivity(),recentContactList);
-                        recyclerView.setAdapter(adapter);
+
+                        Log.e("Recents:","size="+recentContactList.size()+";po0="+recentContactList.get(0));
+                        myRecyclerAdapter.UpdateAdapterData(recentContactList);
+//                        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
+//                        friendsListAdapter.UpdateAdapterData(friends);
                     }
                 });
     }

@@ -8,12 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
+        android:textColor="#3366CC"
         android:text="暂无最近联系人"/>
     <TextView
         android:id="@+id/content_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
+        android:textColor="#3366CC"
         android:text="暂无最近消息"/>
 
 </LinearLayout>
