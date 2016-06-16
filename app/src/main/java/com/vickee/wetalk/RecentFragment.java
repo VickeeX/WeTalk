@@ -101,10 +101,8 @@ public class RecentFragment extends Fragment {
                         // recents参数即为最近会话列表
                         recentContactList = recents;
 
-                        Log.e("Recents:","size="+recentContactList.size()+";po0="+recentContactList.get(0));
+                        Log.e("Recents:","size="+recentContactList.size());
                         myRecyclerAdapter.UpdateAdapterData(recentContactList);
-//                        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
-//                        friendsListAdapter.UpdateAdapterData(friends);
                     }
                 });
     }

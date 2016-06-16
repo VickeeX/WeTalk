@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity{
                 Log.e(TAG, "onClick() called with: [" + token + "]");
 //                token = MD5.getStringMD5(token);
 
-                LoginInfo loginInfo = new LoginInfo("vickee", "vickee", "048bb61b76c7b682a040589998446181");
+                LoginInfo loginInfo = new LoginInfo("vickee", "111111", "048bb61b76c7b682a040589998446181");
 //                LoginInfo loginInfo = new LoginInfo(account, token, "048bb61b76c7b682a040589998446181");
                 RequestCallback<LoginInfo> callback = new RequestCallback<LoginInfo>() {
                     @Override

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Vickee on 2016/6/12.
  */
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>{
+public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mViewHolder>{
     private List<RecentContact> mDatas;
     private Context mContext;
 
@@ -33,31 +33,33 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyRecyclerAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyRecyclerAdapter.mViewHolder holder, int position) {
 
-        if(mDatas.get(position).getContactId() != null){
-            holder.account.setText(mDatas.get(position).getContactId());
-        }
-        if(mDatas.get(position).getContent() != null){
-            holder.content.setText(mDatas.get(position).getContent());
-        }
+        holder.account.setText("xxxxxx");
+        holder.content.setText("xxxxxx");
+//        if(mDatas.get(position).getContactId() != null){
+//            holder.account.setText(mDatas.get(position).getContactId());
+//        }
+//        if(mDatas.get(position).getContent() != null){
+//            holder.content.setText(mDatas.get(position).getContent());
+//        }
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        return new MyViewHolder(LayoutInflater.from(mContext)
+    public mViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        return new mViewHolder(LayoutInflater.from(mContext)
                 .inflate(R.layout.recents_item,parent,false));
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class mViewHolder extends RecyclerView.ViewHolder{
         TextView account;
         TextView content;
 
-        public MyViewHolder(View view){
-            super(view);
-            account = (TextView)view.findViewById(R.id.account_tv);
-            content = (TextView)view.findViewById(R.id.content_tv);
+        public mViewHolder(View itemview){
+            super(itemview);
+            account = (TextView)itemview.findViewById(R.id.account_tv);
+            content = (TextView)itemview.findViewById(R.id.content_tv);
             Log.e("Recents: ","new viewholder");
 
         }
