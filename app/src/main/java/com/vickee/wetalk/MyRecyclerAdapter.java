@@ -48,7 +48,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     @Override
     public mViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         return new mViewHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.recents_item,parent,false));
+                .inflate(R.layout.recents_item,null));
     }
 
 
