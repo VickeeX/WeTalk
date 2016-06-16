@@ -35,7 +35,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     public void onBindViewHolder(MyRecyclerAdapter.mViewHolder holder, int position) {
 
 //        holder.account.setText("xxxxxx");
-        holder.content.setText("xxxxxxxxxxxx");
+//        holder.content.setText("xxxxxxxxxxxx");
 
         holder.account.setText(mDatas.get(position).getContactId());
         if(mDatas.get(position).getContent() != null){
