@@ -66,7 +66,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 NIMClient.getService(FriendService.class)
-                        .addFriend(new AddFriendData("user1_test",verifyType,""))
+                        .addFriend(new AddFriendData("user2_test",verifyType,""))
                         .setCallback(new RequestCallback<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
