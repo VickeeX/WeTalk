@@ -23,8 +23,9 @@
         android:orientation="horizontal">
         <EditText
             android:id="@+id/msgText_et"
-            android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_height="match_parent" />
+            android:layout_width="312dp"
+            android:layout_height="match_parent"
+            android:hint="请输入文本内容"/>
         <Button
             android:id="@+id/sendMsg_btn"
             android:layout_width="match_parent"
