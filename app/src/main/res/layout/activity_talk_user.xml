@@ -25,11 +25,13 @@
             android:id="@+id/msgText_et"
             android:layout_width="312dp"
             android:layout_height="match_parent"
-            android:hint="请输入文本内容"/>
+            android:hint="请输入消息内容"/>
         <Button
             android:id="@+id/sendMsg_btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="110dip"
+            android:layout_height="match_parent"
+            android:background="@drawable/login_button1"
+            android:text="发送" />
     </LinearLayout>
 </RelativeLayout>
 
