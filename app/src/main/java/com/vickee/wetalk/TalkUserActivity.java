@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 public class TalkUserActivity extends AppCompatActivity {
 
+    private String content;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

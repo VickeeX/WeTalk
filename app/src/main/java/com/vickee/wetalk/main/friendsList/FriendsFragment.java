@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.friend.FriendService;
@@ -96,6 +97,14 @@ public class FriendsFragment extends Fragment {
         friends = NIMClient.getService(FriendService.class).getFriendAccounts();
         Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
         friendsListAdapter.UpdateAdapterData(friends);
+        friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 //        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
 //        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
 //        if(isMyFriend){

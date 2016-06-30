@@ -20,6 +20,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     private List<String> mDatas;
     private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
 
 
     public FriendsListAdapter(Context context){
@@ -34,8 +35,17 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(mViewHolder holder, int position) {
+    public void onBindViewHolder(final mViewHolder holder, int position) {
         holder.textView.setText(mDatas.get(position));
+        if(mOnItemClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int position = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
+                }
+            });
+        }
     }
 
     @Override
@@ -64,5 +74,13 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         mDatas.addAll(datas);
         Log.e("Friends: ","size="+mDatas.size());
         notifyDataSetChanged();
+    }
+
+    public static interface OnItemClickListener{
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 }
