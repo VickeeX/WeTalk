@@ -2,6 +2,7 @@ package com.vickee.wetalk;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -18,6 +19,13 @@ public class TalkUserActivity extends AppCompatActivity {
 
         content_et = (EditText)findViewById(R.id.msgText_et);
         send_btn = (Button)findViewById(R.id.sendMsg_btn);
+        send_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String content = content_et.getText().toString();
+
+            }
+        });
 
     }
 }
