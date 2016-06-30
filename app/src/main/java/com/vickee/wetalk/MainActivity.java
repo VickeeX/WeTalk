@@ -159,17 +159,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.recentTalk_ll:
 //                recent_iv.setImageResource(R.drawable.pressed);
-                recent_tv.setTextColor(0xff1B940A);
+                recent_tv.setTextColor(0x0000ff);
                 initFragment(0);
                 break;
             case R.id.friends_ll:
 //                friends_iv.setImageResource(R.drawable.pressed);
-                friends_tv.setTextColor(0xff1B940A);
+                friends_tv.setTextColor(0x0000ff);
                 initFragment(1);
                 break;
             case R.id.team_ll:
 //                team_iv.setImageResource(R.drawable.pressed);
-                team_tv.setTextColor(0xff1B940A);
+                team_tv.setTextColor(0x0000ff);
                 initFragment(2);
                 break;
             default:
