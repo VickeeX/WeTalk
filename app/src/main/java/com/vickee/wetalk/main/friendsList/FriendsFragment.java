@@ -1,4 +1,4 @@
-package com.vickee.wetalk;
+package com.vickee.wetalk.main.friendsList;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,9 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.RequestCallbackWrapper;
-import com.netease.nimlib.sdk.msg.MsgService;
-import com.netease.nimlib.sdk.msg.model.RecentContact;
+import com.netease.nimlib.sdk.friend.FriendService;
+import com.vickee.wetalk.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +22,22 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RecentFragment.OnFragmentInteractionListener} interface
+ * {@link FriendsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link RecentFragment#newInstance} factory method to
+ * Use the {@link FriendsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecentFragment extends Fragment {
+public class FriendsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private List<RecentContact> recentContactList;
+//    private TextView test_friends_tv;
+    private List<String> friends;
     private RecyclerView recyclerView;
-    private MyRecyclerAdapter myRecyclerAdapter;
+//    private MyAdapter adapter;
+    private FriendsListAdapter friendsListAdapter;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -44,7 +45,7 @@ public class RecentFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public RecentFragment() {
+    public FriendsFragment() {
         // Required empty public constructor
     }
 
@@ -54,11 +55,11 @@ public class RecentFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment RecentFragment.
+     * @return A new instance of fragment FriendsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RecentFragment newInstance(String param1, String param2) {
-        RecentFragment fragment = new RecentFragment();
+    public static FriendsFragment newInstance(String param1, String param2) {
+        FriendsFragment fragment = new FriendsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,45 +75,44 @@ public class RecentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        recentContactList = new ArrayList<>();
-        myRecyclerAdapter = new MyRecyclerAdapter(getActivity());
-
+        friends = new ArrayList<>();
+        friendsListAdapter = new FriendsListAdapter(getActivity());
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recent, container, false);
+        return inflater.inflate(R.layout.fragment_friends, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
+        recyclerView = (RecyclerView)view.findViewById(R.id.friendsList_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(myRecyclerAdapter);
+        recyclerView.setAdapter(friendsListAdapter);
 
-        NIMClient.getService(MsgService.class).queryRecentContacts()
-                .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
-                    @Override
-                    public void onResult(int code, List<RecentContact> recents, Throwable e) {
-                        // recents参数即为最近会话列表
-                        recentContactList = recents;
+        friends = NIMClient.getService(FriendService.class).getFriendAccounts();
+        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
+        friendsListAdapter.UpdateAdapterData(friends);
+//        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
+//        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
+//        if(isMyFriend){
+//            test_friends_tv.setText("添加新好友");
+//        }
+//        else{
+//            test_friends_tv.setText("暂无更新");
+//        }
 
-                        Log.e("Recents:","size="+recentContactList.size());
-                        myRecyclerAdapter.UpdateAdapterData(recentContactList);
-                    }
-                });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+//    public void onButtonPressed(Uri uri) {
+//        if (mListener != null) {
+//            mListener.onFragmentInteraction(uri);
+//        }
+//    }
 
     @Override
     public void onDetach() {

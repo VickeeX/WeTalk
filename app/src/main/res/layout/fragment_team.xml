@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vickee.wetalk.TeamFragment">
+    tools:context=".main.teamList.TeamFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,4 +1,4 @@
-package com.vickee.wetalk;
+package com.vickee.wetalk.main.recentNews;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.netease.nimlib.sdk.msg.model.RecentContact;
+import com.vickee.wetalk.R;
 
 import java.util.ArrayList;
 import java.util.List;

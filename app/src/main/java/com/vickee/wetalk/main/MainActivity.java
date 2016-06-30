@@ -18,10 +18,10 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
 import com.netease.nimlib.sdk.friend.model.AddFriendData;
-import com.vickee.wetalk.FriendsFragment;
+import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.R;
-import com.vickee.wetalk.RecentFragment;
-import com.vickee.wetalk.TeamFragment;
+import com.vickee.wetalk.main.recentNews.RecentFragment;
+import com.vickee.wetalk.main.teamList.TeamFragment;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
         , RecentFragment.OnFragmentInteractionListener
