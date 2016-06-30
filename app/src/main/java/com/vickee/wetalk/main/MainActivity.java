@@ -1,4 +1,4 @@
-package com.vickee.wetalk;
+package com.vickee.wetalk.main;
 
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -18,11 +18,15 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
 import com.netease.nimlib.sdk.friend.model.AddFriendData;
+import com.vickee.wetalk.FriendsFragment;
+import com.vickee.wetalk.R;
+import com.vickee.wetalk.RecentFragment;
+import com.vickee.wetalk.TeamFragment;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener
         , RecentFragment.OnFragmentInteractionListener
         , FriendsFragment.OnFragmentInteractionListener
-        , TeamFragment.OnFragmentInteractionListener{
+        , TeamFragment.OnFragmentInteractionListener {
 
     private ImageButton search_button;
 
@@ -159,17 +163,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.recentTalk_ll:
 //                recent_iv.setImageResource(R.drawable.pressed);
-                recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.azure));
+                recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.colorPrimary));
                 initFragment(0);
                 break;
             case R.id.friends_ll:
 //                friends_iv.setImageResource(R.drawable.pressed);
-                friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.azure));
+                friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.colorPrimary));
                 initFragment(1);
                 break;
             case R.id.team_ll:
 //                team_iv.setImageResource(R.drawable.pressed);
-                team_tv.setTextColor(team_tv.getResources().getColor(R.color.azure));
+                team_tv.setTextColor(team_tv.getResources().getColor(R.color.colorPrimary));
                 initFragment(2);
                 break;
             default:

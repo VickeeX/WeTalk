@@ -1,4 +1,4 @@
-package com.vickee.wetalk;
+package com.vickee.wetalk.login;
 
 import java.io.IOException;
 import java.io.StringReader;

@@ -1,6 +1,5 @@
-package com.vickee.wetalk;
+package com.vickee.wetalk.login;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -13,11 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.netease.nimlib.sdk.AbortableFuture;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
+import com.vickee.wetalk.DemoCache;
+import com.vickee.wetalk.R;
+import com.vickee.wetalk.main.MainActivity;
 
 /**
  * Created by Vickee on 2016/6/8.
