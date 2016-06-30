@@ -1,5 +1,6 @@
 package com.vickee.wetalk.main.friendsList;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.TalkUserActivity;
+import com.vickee.wetalk.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +104,8 @@ public class FriendsFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), TalkUserActivity.class);
+                startActivity(intent);
             }
         });
 
