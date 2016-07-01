@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,14 +94,16 @@ public class FriendsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(friendsListAdapter);
 
-        friends = NIMClient.getService(FriendService.class).getFriendAccounts();
-        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
+        List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
+        if (friendAccounts != null)
+            friends.addAll(friendAccounts);
+//        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
         friendsListAdapter.UpdateAdapterData(friends);
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
 //                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
-                String id = new String(friends.get(position));
+                String id = friends.get(position);
 
 //                Bundle bundle = new Bundle();
 //                bundle.putString("TalkPerson",id);
