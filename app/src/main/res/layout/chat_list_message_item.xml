@@ -18,7 +18,6 @@
         android:id="@+id/person_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_toRightOf="@id/tv_item_send_txt"
         android:background="@drawable/logo_temp" />
 
     <TextView

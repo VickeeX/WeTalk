@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:background="@drawable/login_button1"
+            android:background="@drawable/login_btn_selector"
             android:text="发送" />
     </LinearLayout>
 </LinearLayout>

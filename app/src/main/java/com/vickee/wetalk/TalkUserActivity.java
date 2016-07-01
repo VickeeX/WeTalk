@@ -48,6 +48,8 @@ public class TalkUserActivity extends AppCompatActivity {
                         "user1_test", SessionTypeEnum.P2P, content);
 
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
+                content_et.setText("");
+                Log.e("SendMessage","from:" + message.getFromAccount());
 //                NIMClient.getService(MsgService.class).sendMessage(message);
 
 
@@ -62,11 +64,9 @@ public class TalkUserActivity extends AppCompatActivity {
         recyclerView.setAdapter(chatMsgListAdapter);
 
 
-        // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
         incomingMessageObserver = new Observer<List<IMMessage>>() {
             @Override
             public void onEvent(List<IMMessage> messages) {
-                // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
                 msg = messages;
                 Log.e("GetMessage", "size=" + msg.size());
                 chatMsgListAdapter.UpdateAdapterData(msg);
