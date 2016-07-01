@@ -24,7 +24,7 @@ import com.vickee.wetalk.main.MainActivity;
 /**
  * Created by Vickee on 2016/6/8.
  */
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
@@ -34,18 +34,25 @@ public class LoginActivity extends AppCompatActivity{
     private EditText password_et;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        login_btn = (Button)findViewById(R.id.bt_login);
-        register_btn = (Button)findViewById(R.id.bt_register);
-        account_et = (EditText)findViewById(R.id.et_account);
-        password_et = (EditText)findViewById(R.id.et_password);
+        LoginInfo loginInfo = ((WeTalkApplication) getApplication()).loginInfo();
+        if (loginInfo != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
-        login_btn.setOnClickListener(new View.OnClickListener(){
+        login_btn = (Button) findViewById(R.id.bt_login);
+        register_btn = (Button) findViewById(R.id.bt_register);
+        account_et = (EditText) findViewById(R.id.et_account);
+        password_et = (EditText) findViewById(R.id.et_password);
+
+        login_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 final String account = account_et.getText().toString();
                 final String token = password_et.getText().toString();
                 Log.e(TAG, "onClick() called with: [" + token + "]");
@@ -77,10 +84,12 @@ public class LoginActivity extends AppCompatActivity{
                         Toast.makeText(LoginActivity.this, "登录异常", Toast.LENGTH_SHORT).show();
                     }
                 };
+
                 NIMClient.getService(AuthService.class).login(loginInfo).setCallback(callback);
             }
         });
     }
+
     private String tokenFromPassword(String password) {
         String appKey = readAppKey(this);
         boolean isDemo = ("048bb61b76c7b682a040589998446181").equals(appKey);

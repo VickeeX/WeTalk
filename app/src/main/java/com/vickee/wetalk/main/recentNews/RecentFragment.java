@@ -100,7 +100,8 @@ public class RecentFragment extends Fragment {
                     @Override
                     public void onResult(int code, List<RecentContact> recents, Throwable e) {
                         // recents参数即为最近会话列表
-                        recentContactList = recents;
+                        if (recents != null)
+                            recentContactList = recents;
 
                         Log.e("Recents:","size="+recentContactList.size());
                         myRecyclerAdapter.UpdateAdapterData(recentContactList);

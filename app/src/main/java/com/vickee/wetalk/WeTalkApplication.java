@@ -82,7 +82,14 @@ public class WeTalkApplication extends Application {
         edit.apply();
     }
 
-    private LoginInfo loginInfo() {
+    public void logout() {
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.clear();
+        edit.apply();
+    }
+
+    public LoginInfo loginInfo() {
         SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
 
         // 从本地读取上次登录成功时保存的用户登录信息
@@ -91,7 +98,7 @@ public class WeTalkApplication extends Application {
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             DemoCache.setAccount(account.toLowerCase());
-            return new LoginInfo(account, token);
+            return new LoginInfo(account, token, "048bb61b76c7b682a040589998446181");
         } else {
             return null;
         }
