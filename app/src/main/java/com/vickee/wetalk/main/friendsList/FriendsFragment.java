@@ -11,13 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.TalkUserActivity;
-import com.vickee.wetalk.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +101,7 @@ public class FriendsFragment extends Fragment {
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
                 startActivity(intent);
             }
