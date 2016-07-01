@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_send_msg_date"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:text="2015-6-6 06:06:06"-->
+        <!--android:textSize="12sp"-->
+        <!--android:visibility="gone" />-->
+
+    <ImageView
+        android:id="@+id/from_person_avator02"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/tv_item_send_txt"
+        android:background="@drawable/logo_temp" />
+
+    <TextView
+        android:id="@+id/tv_item_send_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+
+        android:gravity="center_vertical"
+        android:paddingBottom="6dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="16dp"
+        android:paddingTop="6dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <!--android:layout_marginLeft="110dp"-->
+    <!--android:layout_marginRight="10dp"-->
+</LinearLayout>
+
+
