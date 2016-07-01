@@ -19,7 +19,6 @@ import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
-import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,14 +41,22 @@ public class TalkUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_user);
 
-        talkUser_tv = (TextView)findViewById(R.id.talkUserName_tv);
+        talkUser_tv = (TextView) findViewById(R.id.talkUserName_tv);
         content_et = (EditText) findViewById(R.id.msgText_et);
         send_btn = (Button) findViewById(R.id.sendMsg_btn);
 
         Intent intent = getIntent();
         talkUser = intent.getStringExtra("TalkPerson");
-        Log.e("GetTalkUser:",talkUser);
+        Log.e("GetTalkUser:", talkUser);
         talkUser_tv.setText(talkUser);
+
+
+        msg = new ArrayList<>();
+        chatMsgListAdapter = new ChatMsgListAdapter(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.msgShow_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(chatMsgListAdapter);
 
 
         send_btn.setOnClickListener(new View.OnClickListener() {
@@ -61,20 +68,15 @@ public class TalkUserActivity extends AppCompatActivity {
                         talkUser, SessionTypeEnum.P2P, content);
 
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
-                content_et.setText("");
-                Log.e("SendMessage","from:" + message.getFromAccount() + "to" + talkUser);
+                Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUser);
+                chatMsgListAdapter.UpdateAdapterData(message);
+
 //                NIMClient.getService(MsgService.class).sendMessage(message);
 
+                content_et.setText("");
 
             }
         });
-
-        msg = new ArrayList<>();
-        chatMsgListAdapter = new ChatMsgListAdapter(this);
-
-        recyclerView = (RecyclerView) findViewById(R.id.msgShow_rv);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(chatMsgListAdapter);
 
 
         incomingMessageObserver = new Observer<List<IMMessage>>() {

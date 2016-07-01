@@ -16,6 +16,7 @@ import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,7 @@ public class RecentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         recyclerView.setAdapter(myRecyclerAdapter);
 
         NIMClient.getService(MsgService.class).queryRecentContacts()

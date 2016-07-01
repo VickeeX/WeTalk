@@ -21,6 +21,9 @@ import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
  */
 public class WeTalkApplication extends Application {
 
+    public static final String ACCOUNT = "account";
+    public static final String USER = "user";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -75,25 +78,25 @@ public class WeTalkApplication extends Application {
     }
 
     public void setUser(String account, String token) {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(USER, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
-        edit.putString("account", account);
+        edit.putString(ACCOUNT, account);
         edit.putString("token", token);
         edit.apply();
     }
 
     public void logout() {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(USER, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.clear();
         edit.apply();
     }
 
     public LoginInfo loginInfo() {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences(USER, MODE_PRIVATE);
 
         // 从本地读取上次登录成功时保存的用户登录信息
-        String account = sp.getString("account", "");
+        String account = sp.getString(ACCOUNT, "");
         String token = sp.getString("token", "");
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
@@ -103,5 +106,6 @@ public class WeTalkApplication extends Application {
             return null;
         }
     }
+
 }
 
