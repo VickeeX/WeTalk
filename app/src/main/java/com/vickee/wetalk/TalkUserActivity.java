@@ -12,7 +12,9 @@ import android.widget.EditText;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
+import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
 
@@ -42,8 +44,10 @@ public class TalkUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = content_et.getText().toString();
 
-                IMMessage message = MessageBuilder.createTextMessage("vickee",0,content);
+                IMMessage message = MessageBuilder.createTextMessage(
+                        "user1_test", SessionTypeEnum.P2P, content);
 
+                NIMClient.getService(MsgService.class).sendMessage(message, true);
 //                NIMClient.getService(MsgService.class).sendMessage(message);
 
 
@@ -53,7 +57,7 @@ public class TalkUserActivity extends AppCompatActivity {
         msg = new ArrayList<>();
         chatMsgListAdapter = new ChatMsgListAdapter(this);
 
-        recyclerView = (RecyclerView)findViewById(R.id.msgShow_rv);
+        recyclerView = (RecyclerView) findViewById(R.id.msgShow_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(chatMsgListAdapter);
 
@@ -64,7 +68,7 @@ public class TalkUserActivity extends AppCompatActivity {
             public void onEvent(List<IMMessage> messages) {
                 // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
                 msg = messages;
-                Log.e("GetMessage","size="+msg.size());
+                Log.e("GetMessage", "size=" + msg.size());
                 chatMsgListAdapter.UpdateAdapterData(msg);
             }
         };
