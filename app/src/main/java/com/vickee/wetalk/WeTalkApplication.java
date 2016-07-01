@@ -2,8 +2,10 @@ package com.vickee.wetalk;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.netease.nimlib.sdk.NIMClient;
@@ -17,15 +19,16 @@ import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
 /**
  * Created by Vickee on 2016/6/8.
  */
-public class WeTalkApplication extends Application{
+public class WeTalkApplication extends Application {
+
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
 
         NIMClient.init(this, loginInfo(), options());
     }
 
-    private SDKOptions options(){
+    private SDKOptions options() {
         SDKOptions options = new SDKOptions();
 
         StatusBarNotificationConfig config = new StatusBarNotificationConfig();
@@ -71,8 +74,27 @@ public class WeTalkApplication extends Application{
         return options;
     }
 
+    public void setUser(String account, String token) {
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString("account", account);
+        edit.putString("token", token);
+        edit.apply();
+    }
+
     private LoginInfo loginInfo() {
-        return null;
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+
+        // 从本地读取上次登录成功时保存的用户登录信息
+        String account = sp.getString("account", "");
+        String token = sp.getString("token", "");
+
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
+            DemoCache.setAccount(account.toLowerCase());
+            return new LoginInfo(account, token);
+        } else {
+            return null;
+        }
     }
 }
 

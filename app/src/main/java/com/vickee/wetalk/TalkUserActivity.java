@@ -1,5 +1,6 @@
 package com.vickee.wetalk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -23,9 +25,11 @@ import java.util.List;
 
 public class TalkUserActivity extends AppCompatActivity {
 
+    private TextView talkUser_tv;
     private EditText content_et;
     private Button send_btn;
 
+    private String talkUser;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
     private List<IMMessage> msg;
@@ -37,19 +41,27 @@ public class TalkUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_user);
 
+        talkUser_tv = (TextView)findViewById(R.id.talkUserName_tv);
         content_et = (EditText) findViewById(R.id.msgText_et);
         send_btn = (Button) findViewById(R.id.sendMsg_btn);
+
+        Intent intent = getIntent();
+        talkUser = intent.getStringExtra("TalkPerson");
+        Log.e("GetTalkUser:",talkUser);
+        talkUser_tv.setText(talkUser);
+
+
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String content = content_et.getText().toString();
 
                 IMMessage message = MessageBuilder.createTextMessage(
-                        "user1_test", SessionTypeEnum.P2P, content);
+                        talkUser, SessionTypeEnum.P2P, content);
 
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
                 content_et.setText("");
-                Log.e("SendMessage","from:" + message.getFromAccount());
+                Log.e("SendMessage","from:" + message.getFromAccount() + "to" + talkUser);
 //                NIMClient.getService(MsgService.class).sendMessage(message);
 
 

@@ -102,7 +102,12 @@ public class FriendsFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
 //                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
+                String id = new String(friends.get(position));
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("TalkPerson",id);
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
+                intent.putExtra("TalkPerson",id);
                 startActivity(intent);
             }
         });

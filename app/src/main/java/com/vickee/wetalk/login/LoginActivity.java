@@ -18,6 +18,7 @@ import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.vickee.wetalk.DemoCache;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.WeTalkApplication;
 import com.vickee.wetalk.main.MainActivity;
 
 /**
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View v){
                 final String account = account_et.getText().toString();
-                String token = password_et.getText().toString();
+                final String token = password_et.getText().toString();
                 Log.e(TAG, "onClick() called with: [" + token + "]");
 //                token = MD5.getStringMD5(token);
 
@@ -57,6 +58,8 @@ public class LoginActivity extends AppCompatActivity{
                     public void onSuccess(LoginInfo loginInfo) {
                         // the auto-login can be realized here
                         Log.d(TAG, "onSuccess() called with: " + "loginInfo = [" + loginInfo + "]");
+
+                        ((WeTalkApplication) getApplication()).setUser(account, token);
 
                         DemoCache.setAccount(account);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
