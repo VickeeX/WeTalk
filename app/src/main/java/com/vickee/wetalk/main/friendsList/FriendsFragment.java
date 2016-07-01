@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.vickee.wetalk.R;
-import com.vickee.wetalk.TalkUserActivity;
+import com.vickee.wetalk.talkUser.TalkUserActivity;
 
 import java.util.ArrayList;
 import java.util.List;
