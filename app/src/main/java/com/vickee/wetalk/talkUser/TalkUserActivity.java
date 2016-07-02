@@ -30,6 +30,7 @@ public class TalkUserActivity extends AppCompatActivity {
     private Button send_btn;
 
     private String talkUser;
+    private String talkGroup;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
     private List<IMMessage> msg;
@@ -47,9 +48,15 @@ public class TalkUserActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         talkUser = intent.getStringExtra("TalkPerson");
-        Log.e("GetTalkUser:", talkUser);
-        talkUser_tv.setText(talkUser);
+        talkGroup = intent.getStringExtra("TalkGroup");
+        if (talkUser != null){
+            Log.e("GetTalkUser:", talkUser);
+            talkUser_tv.setText("与 " + talkUser + "聊天中");
 
+        }else{
+            Log.e("GetTalkGroup:", talkGroup);
+            talkUser_tv.setText("群组: " + talkGroup);
+        }
 
         msg = new ArrayList<>();
         chatMsgListAdapter = new ChatMsgListAdapter(this);
@@ -63,10 +70,15 @@ public class TalkUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String content = content_et.getText().toString();
+                IMMessage message;
 
-                IMMessage message = MessageBuilder.createTextMessage(
-                        talkUser, SessionTypeEnum.P2P, content);
-
+                if (talkUser != null) {
+                    message = MessageBuilder.createTextMessage(
+                            talkUser, SessionTypeEnum.P2P, content);
+                }else{
+                    message = MessageBuilder.createTextMessage(
+                            talkGroup, SessionTypeEnum.Team, content);
+                }
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
                 Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUser);
                 chatMsgListAdapter.UpdateAdapterData(message);

@@ -108,7 +108,7 @@ public class TeamFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 String id = teams.get(position);
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
-                intent.putExtra("TalkPerson",id);
+                intent.putExtra("TalkGroup",id);
                 startActivity(intent);
             }
         });
