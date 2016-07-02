@@ -190,12 +190,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_add:
-                Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+            case R.id.menu_add_friend:
+                Toast.makeText(this, "add_friend", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.menu_find:
-                Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+            case R.id.menu_add_team:
+                Toast.makeText(this, "add_team", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.menu_create_team:
+                Toast.makeText(this, "create_team",Toast.LENGTH_SHORT).show();
             default:break;
         }
         return super.onOptionsItemSelected(item);

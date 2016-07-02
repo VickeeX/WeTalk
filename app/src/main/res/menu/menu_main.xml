@@ -2,13 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_add"
-        android:title="Add"
+        android:id="@+id/menu_add_friend"
+        android:title="添加好友"
         android:icon="@mipmap/ic_launcher"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_find"
-        android:title="Find"
+        android:id="@+id/menu_add_team"
+        android:title="添加群组"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_create_team"
+        android:title="创建群组"
         android:icon="@mipmap/ic_launcher"
         app:showAsAction="never" />
 </menu>

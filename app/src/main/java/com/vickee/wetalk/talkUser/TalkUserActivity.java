@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -25,9 +25,10 @@ import java.util.List;
 
 public class TalkUserActivity extends AppCompatActivity {
 
-    private TextView talkUser_tv;
+//    private TextView talkUser_tv;
     private EditText content_et;
     private Button send_btn;
+    private Toolbar talk_toolbar;
 
     private String talkUser;
     private String talkGroup;
@@ -41,25 +42,35 @@ public class TalkUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_user);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        setTitle("");
 
-        talkUser_tv = (TextView) findViewById(R.id.talkUserName_tv);
-        content_et = (EditText) findViewById(R.id.msgText_et);
-        send_btn = (Button) findViewById(R.id.sendMsg_btn);
+//        setTitle("");
+        talk_toolbar = (Toolbar) findViewById(R.id.talk_toolbar);
+        setSupportActionBar(talk_toolbar);
 
         Intent intent = getIntent();
         talkUser = intent.getStringExtra("TalkPerson");
         talkGroup = intent.getStringExtra("TalkGroup");
         if (talkUser != null) {
             Log.e("GetTalkUser:", talkUser);
-            talkUser_tv.setText("与 " + talkUser + "聊天中");
-
+            setTitle("好友: " + talkUser);
         } else {
             Log.e("GetTalkGroup:", talkGroup);
-            talkUser_tv.setText("群组: " + talkGroup);
+            setTitle("群组: " + talkGroup);
         }
+
+
+//        talkUser_tv = (TextView) findViewById(R.id.talkUserName_tv);
+        content_et = (EditText) findViewById(R.id.msgText_et);
+        send_btn = (Button) findViewById(R.id.sendMsg_btn);
+
+//        if (talkUser != null) {
+//            Log.e("GetTalkUser:", talkUser);
+//            talkUser_tv.setText("与 " + talkUser + "聊天中");
+//
+//        } else {
+//            Log.e("GetTalkGroup:", talkGroup);
+//            talkUser_tv.setText("群组: " + talkGroup);
+//        }
 
         msg = new ArrayList<>();
         chatMsgListAdapter = new ChatMsgListAdapter(this);
