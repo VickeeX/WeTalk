@@ -1,15 +1,16 @@
 package com.vickee.wetalk.main;
 
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,8 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
 import com.netease.nimlib.sdk.friend.model.AddFriendData;
-import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.main.recentNews.RecentFragment;
 import com.vickee.wetalk.main.teamList.TeamFragment;
 
@@ -46,6 +47,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private Fragment friendsFragment;
     private Fragment teamFragment;
 
+    PopupMenu popupMenu = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         team_tv = (TextView)findViewById(R.id.team_tv);
 
         final VerifyType verifyType = VerifyType.DIRECT_ADD;
+
+//        MenuInflater inflater = popupMenu.getMenuInflater();
+//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                return false;
+//            }
+//        });
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,6 +196,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void onFragmentInteraction(Uri uri){
         Toast.makeText(this,"test onFragmentInteractionListener",Toast.LENGTH_LONG).show();
     }
+
+//    public void onPopupButtonClick(View button){
+//        popupMenu = new PopupMenu(this, button);
+//        getMenuInflater().inflate;
+//    }
 }
 
 

@@ -1,14 +1,22 @@
 package com.vickee.wetalk.main.teamList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.talkUser.TalkUserActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +36,10 @@ public class TeamFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private List<String> teams;
+    private RecyclerView recyclerView;
+    private TeamListAdapter teamListAdapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -60,6 +72,9 @@ public class TeamFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        teams = new ArrayList<>();
+        teamListAdapter = new TeamListAdapter(getActivity());
     }
 
     @Override
@@ -68,6 +83,39 @@ public class TeamFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_team, container, false);
     }
+
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = (RecyclerView)view.findViewById(R.id.teamList_rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(teamListAdapter);
+
+//        List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
+//        if (teamList1 != null){
+//            for(Team eachTeam: teamList1){
+//                teams.add(eachTeam.getId());
+//            }
+//        }
+        for (int i=0; i<6;i++){
+            teams.add("TestGroup");
+        }
+
+        teamListAdapter.UpdateAdapterData(teams);
+        teamListAdapter.setOnItemClickListener(new TeamListAdapter.OnItemClickListener(){
+            @Override
+            public void onItemClick(View view, int position) {
+                String id = teams.get(position);
+                Intent intent = new Intent(getActivity(), TalkUserActivity.class);
+                intent.putExtra("TalkPerson",id);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
