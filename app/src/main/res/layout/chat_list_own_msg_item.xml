@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:gravity="end">
+    android:gravity="right">
 
     <!--<TextView-->
     <!--android:id="@+id/tv_send_msg_date"-->
@@ -31,7 +31,6 @@
         android:id="@+id/own_person_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_gravity="right"
         android:background="@drawable/logo_temp" />
     <!--android:layout_marginLeft="110dp"-->
     <!--android:layout_marginRight="10dp"-->
