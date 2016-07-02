@@ -32,6 +32,7 @@ public class TalkUserActivity extends AppCompatActivity {
 
     private String talkUser;
     private String talkGroup;
+    private String talkObject;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
     private List<IMMessage> msg;
@@ -51,26 +52,18 @@ public class TalkUserActivity extends AppCompatActivity {
         talkUser = intent.getStringExtra("TalkPerson");
         talkGroup = intent.getStringExtra("TalkGroup");
         if (talkUser != null) {
-            Log.e("GetTalkUser:", talkUser);
             setTitle("好友: " + talkUser);
+            NIMClient.getService(MsgService.class).setChattingAccount(talkUser, SessionTypeEnum.P2P);
+            talkObject = talkUser;
         } else {
             Log.e("GetTalkGroup:", talkGroup);
             setTitle("群组: " + talkGroup);
+            NIMClient.getService(MsgService.class).setChattingAccount(talkGroup, SessionTypeEnum.Team);
+            talkObject = talkGroup;
         }
 
-
-//        talkUser_tv = (TextView) findViewById(R.id.talkUserName_tv);
         content_et = (EditText) findViewById(R.id.msgText_et);
         send_btn = (Button) findViewById(R.id.sendMsg_btn);
-
-//        if (talkUser != null) {
-//            Log.e("GetTalkUser:", talkUser);
-//            talkUser_tv.setText("与 " + talkUser + "聊天中");
-//
-//        } else {
-//            Log.e("GetTalkGroup:", talkGroup);
-//            talkUser_tv.setText("群组: " + talkGroup);
-//        }
 
         msg = new ArrayList<>();
         chatMsgListAdapter = new ChatMsgListAdapter(this);
@@ -108,7 +101,12 @@ public class TalkUserActivity extends AppCompatActivity {
         incomingMessageObserver = new Observer<List<IMMessage>>() {
             @Override
             public void onEvent(List<IMMessage> messages) {
-                msg = messages;
+                msg.clear();
+                for ( IMMessage imMessage: messages){
+                    if (imMessage.getFromAccount().equals(talkObject)){
+                        msg.add(imMessage);
+                    }
+                }
                 Log.e("GetMessage", "size=" + msg.size());
                 chatMsgListAdapter.UpdateAdapterData(msg);
             }

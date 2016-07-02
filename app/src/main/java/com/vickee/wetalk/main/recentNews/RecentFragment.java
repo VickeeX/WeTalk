@@ -1,5 +1,6 @@
 package com.vickee.wetalk.main.recentNews;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +13,12 @@ import android.view.ViewGroup;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
+import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;
@@ -36,6 +40,8 @@ public class RecentFragment extends Fragment {
         recentContactList = new ArrayList<>();
         myRecyclerAdapter = new MyRecyclerAdapter(getActivity());
 
+        NIMClient.getService(MsgService.class).setChattingAccount
+                (MsgService.MSG_CHATTING_ACCOUNT_ALL, SessionTypeEnum.None);
     }
 
 
@@ -65,5 +71,22 @@ public class RecentFragment extends Fragment {
                         myRecyclerAdapter.UpdateAdapterData(recentContactList);
                     }
                 });
+
+        myRecyclerAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                String recentId = recentContactList.get(position).getContactId();
+
+                Intent intent = new Intent(getActivity(), TalkUserActivity.class);
+                boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
+                if ( isMyFriend ){
+                    intent.putExtra("TalkPerson", recentId);
+                }else{
+                    intent.putExtra("TalkGroup",recentId);
+                }
+                startActivity(intent);
+            }
+        });
+
     }
 }

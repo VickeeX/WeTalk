@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final EditText editText = (EditText) searchFriendLayout.findViewById(R.id.search_friend_dialog_et);
         final TextView textView = (TextView) searchFriendLayout.findViewById(R.id.search_friend_dialog_tv);
 
-        new AlertDialog.Builder(this).setTitle("搜索用户")
+        new AlertDialog.Builder(this).setTitle("添加用户")
                 .setView(searchFriendLayout)
                 .setPositiveButton("添加", new DialogInterface.OnClickListener() {
                     @Override
@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void addTeam() {
         Toast.makeText(this, "add_team", Toast.LENGTH_SHORT).show();
+
     }
 
     public void createTeam() {

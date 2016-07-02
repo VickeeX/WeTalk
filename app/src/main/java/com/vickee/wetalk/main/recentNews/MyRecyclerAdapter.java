@@ -20,6 +20,7 @@ import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mViewHolder>{
     private List<RecentContact> mDatas;
     private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
 
     public MyRecyclerAdapter(Context context){
         this.mContext = context;
@@ -33,7 +34,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     }
 
     @Override
-    public void onBindViewHolder(MyRecyclerAdapter.mViewHolder holder, int position) {
+    public void onBindViewHolder(final MyRecyclerAdapter.mViewHolder holder, int position) {
 
 //        holder.account.setText("xxxxxx");
 //        holder.content.setText("xxxxxxxxxxxx");
@@ -43,6 +44,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
             holder.content.setText(mDatas.get(position).getContent());
         }else{
             holder.content.setText("暂无最近消息");
+        }
+
+        if(mOnItemClickListener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int position = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
+                }
+            });
         }
     }
 
@@ -71,5 +82,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
         mDatas.addAll(datas);
         Log.e("Recents: ","size="+mDatas.size());
         notifyDataSetChanged();
+    }
+
+    public static interface OnItemClickListener{
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 }
