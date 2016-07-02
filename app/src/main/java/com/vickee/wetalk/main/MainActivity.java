@@ -66,33 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         final VerifyType verifyType = VerifyType.DIRECT_ADD;
 
-//        search_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                NIMClient.getService(FriendService.class)
-//                        .addFriend(new AddFriendData("user2_test", verifyType, ""))
-//                        .setCallback(new RequestCallback<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(getApplicationContext(),
-//                                        "添加好友成功", Toast.LENGTH_LONG).show();
-//                            }
-//
-//                            @Override
-//                            public void onFailed(int i) {
-//                                Toast.makeText(getApplicationContext(),
-//                                        "添加好友失败", Toast.LENGTH_LONG).show();
-//                            }
-//
-//                            @Override
-//                            public void onException(Throwable throwable) {
-//
-//                            }
-//                        });
-//            }
-//        });
-
-
         recent_ll.setOnClickListener(this);
         friends_ll.setOnClickListener(this);
         team_ll.setOnClickListener(this);
@@ -191,18 +164,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_add_friend:
-                Toast.makeText(this, "add_friend", Toast.LENGTH_SHORT).show();
+                addFriend();
                 break;
             case R.id.menu_add_team:
-                Toast.makeText(this, "add_team", Toast.LENGTH_SHORT).show();
+                addTeam();
                 break;
             case R.id.menu_create_team:
-                Toast.makeText(this, "create_team",Toast.LENGTH_SHORT).show();
+                createTeam();
             default:break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void addFriend() {
+        Toast.makeText(this, "add_friend", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addTeam() {
+        Toast.makeText(this, "add_team", Toast.LENGTH_SHORT).show();
+    }
+
+    public void createTeam() {
+        Toast.makeText(this, "create_team",Toast.LENGTH_SHORT).show();
+    }
+
 }
+
+
+
+
+//        search_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                NIMClient.getService(FriendService.class)
+//                        .addFriend(new AddFriendData("user2_test", verifyType, ""))
+//                        .setCallback(new RequestCallback<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(getApplicationContext(),
+//                                        "添加好友成功", Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            @Override
+//                            public void onFailed(int i) {
+//                                Toast.makeText(getApplicationContext(),
+//                                        "添加好友失败", Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            @Override
+//                            public void onException(Throwable throwable) {
+//
+//                            }
+//                        });
+//            }
+//        });
 
 
 
