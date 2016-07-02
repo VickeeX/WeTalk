@@ -54,18 +54,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }
 
     class mViewHolder extends RecyclerView.ViewHolder {
-    public TextView textView;
+        public TextView textView;
 
-    public mViewHolder(View itemView) {
-        super(itemView);
-        textView = (TextView) itemView.findViewById(R.id.friends_item_tv);
-        Log.e("Friends: ","new viewholder");
-//        textView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText("xid="+getPosition())
-//            }
-//        });
+        public mViewHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.friends_item_tv);
+            Log.e("Friends: ","new viewholder");
     }
 }
 

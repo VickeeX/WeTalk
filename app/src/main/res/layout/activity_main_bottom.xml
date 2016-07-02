@@ -17,7 +17,7 @@
             android:id="@+id/recentTalk_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_sms_grey_500_36dp"/>
+            android:src="@drawable/ic_sms_blue_a200_36dp"/>
         <TextView
             android:id="@+id/recentTalk_tv"
             android:layout_width="wrap_content"

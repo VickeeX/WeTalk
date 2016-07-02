@@ -35,11 +35,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
 
     @Override
     public void onBindViewHolder(final MyRecyclerAdapter.mViewHolder holder, int position) {
-
-//        holder.account.setText("xxxxxx");
-//        holder.content.setText("xxxxxxxxxxxx");
-
         holder.account.setText(mDatas.get(position).getContactId());
+        holder.time.setText("2016-7");
+
+//        holder.time.setText(mDatas.get(position).getTime());
         if(mDatas.get(position).getContent() != null){
             holder.content.setText(mDatas.get(position).getContent());
         }else{
@@ -67,11 +66,13 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     class mViewHolder extends RecyclerView.ViewHolder{
         TextView account;
         TextView content;
+        TextView time;
 
         public mViewHolder(View itemview){
             super(itemview);
             account = (TextView)itemview.findViewById(R.id.account_tv);
             content = (TextView)itemview.findViewById(R.id.content_tv);
+            time = (TextView)itemview.findViewById(R.id.time_tv);
             Log.e("Recents: ","new viewholder");
 
         }

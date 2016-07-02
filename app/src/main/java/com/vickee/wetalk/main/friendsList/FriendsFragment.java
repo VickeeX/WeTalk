@@ -54,31 +54,16 @@ public class FriendsFragment extends Fragment {
         List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
         if (friendAccounts != null)
             friends.addAll(friendAccounts);
-//        Log.e("FriendsERROR","size="+friends.size()+"; po0="+friends.get(0));
         friendsListAdapter.UpdateAdapterData(friends);
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                Toast.makeText(getActivity(), friends.get(position),Toast.LENGTH_SHORT).show();
                 String id = friends.get(position);
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("TalkPerson",id);
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
                 intent.putExtra("TalkPerson", id);
                 startActivity(intent);
             }
         });
-
-
-//        test_friends_tv = (TextView)view.findViewById(R.id.test_friend_tv);
-//        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend("user1_test");
-//        if(isMyFriend){
-//            test_friends_tv.setText("添加新好友");
-//        }
-//        else{
-//            test_friends_tv.setText("暂无更新");
-//        }
-
     }
 }
