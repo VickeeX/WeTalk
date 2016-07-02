@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -179,6 +182,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void addFriend() {
         Toast.makeText(this, "add_friend", Toast.LENGTH_SHORT).show();
+        LayoutInflater searchFriendInflater = getLayoutInflater();
+        View searchFriendLayout = searchFriendInflater.inflate(R.layout.search_dialog
+                , (ViewGroup)findViewById(R.id.search_friend_dialog));
+        new AlertDialog.Builder(this).setTitle("搜索用户")
+                .setView(searchFriendLayout)
+                .setPositiveButton("添加",null)
+                .setNegativeButton("取消",null)
+                .show();
     }
 
     public void addTeam() {
