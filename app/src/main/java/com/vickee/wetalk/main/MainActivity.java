@@ -127,13 +127,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void restartButton() {
-        recent_iv.setImageResource(R.drawable.logo_temp);
-        friends_iv.setImageResource(R.drawable.logo_temp);
-        team_iv.setImageResource(R.drawable.logo_temp);
+        recent_iv.setImageResource(R.drawable.ic_sms_grey_500_36dp);
+        friends_iv.setImageResource(R.drawable.ic_person_grey_500_48dp);
+        team_iv.setImageResource(R.drawable.ic_group_grey_500_48dp);
 
-        recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.black));
-        friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.black));
-        team_tv.setTextColor(team_tv.getResources().getColor(R.color.black));
+        recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.grey));
+        friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.grey));
+        team_tv.setTextColor(team_tv.getResources().getColor(R.color.grey));
     }
 
     @Override
@@ -142,17 +142,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.recentTalk_ll:
 //                recent_iv.setImageResource(R.drawable.pressed);
-                recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.colorPrimary));
+                recent_tv.setTextColor(recent_tv.getResources().getColor(R.color.skyblue));
+                recent_iv.setImageResource(R.drawable.ic_sms_blue_a200_36dp);
                 initFragment(0);
                 break;
             case R.id.friends_ll:
 //                friends_iv.setImageResource(R.drawable.pressed);
-                friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.colorPrimary));
+                friends_tv.setTextColor(friends_tv.getResources().getColor(R.color.skyblue));
+                friends_iv.setImageResource(R.drawable.ic_person_blue_a200_48dp);
                 initFragment(1);
                 break;
             case R.id.team_ll:
 //                team_iv.setImageResource(R.drawable.pressed);
-                team_tv.setTextColor(team_tv.getResources().getColor(R.color.colorPrimary));
+                team_tv.setTextColor(team_tv.getResources().getColor(R.color.skyblue));
+                team_iv.setImageResource(R.drawable.ic_group_blue_a200_48dp);
                 initFragment(2);
                 break;
             default:

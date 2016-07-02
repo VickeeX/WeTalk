@@ -10,20 +10,21 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
 
         <ImageView
             android:id="@+id/recentTalk_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:src="@drawable/ic_sms_grey_500_36dp"/>
         <TextView
             android:id="@+id/recentTalk_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="消息"
-            android:textColor="#3366cc"
+            android:textColor="@color/skyblue"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -38,14 +39,14 @@
             android:id="@+id/friends_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:src="@drawable/ic_person_grey_500_48dp"/>
         <TextView
             android:id="@+id/friends_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:text="好友"
-            android:textColor="#000000"
+            android:textColor="@color/grey"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -60,14 +61,14 @@
             android:id="@+id/team_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_temp"/>
+            android:src="@drawable/ic_group_grey_500_48dp"/>
         <TextView
             android:id="@+id/team_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="群组"
-            android:textColor="#000000"
+            android:textColor="@color/grey"
             android:textStyle="bold"/>
     </LinearLayout>
 
