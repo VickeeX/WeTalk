@@ -41,6 +41,9 @@ public class TalkUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_user);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        setTitle("");
 
         talkUser_tv = (TextView) findViewById(R.id.talkUserName_tv);
         content_et = (EditText) findViewById(R.id.msgText_et);
@@ -49,11 +52,11 @@ public class TalkUserActivity extends AppCompatActivity {
         Intent intent = getIntent();
         talkUser = intent.getStringExtra("TalkPerson");
         talkGroup = intent.getStringExtra("TalkGroup");
-        if (talkUser != null){
+        if (talkUser != null) {
             Log.e("GetTalkUser:", talkUser);
             talkUser_tv.setText("与 " + talkUser + "聊天中");
 
-        }else{
+        } else {
             Log.e("GetTalkGroup:", talkGroup);
             talkUser_tv.setText("群组: " + talkGroup);
         }
@@ -75,7 +78,7 @@ public class TalkUserActivity extends AppCompatActivity {
                 if (talkUser != null) {
                     message = MessageBuilder.createTextMessage(
                             talkUser, SessionTypeEnum.P2P, content);
-                }else{
+                } else {
                     message = MessageBuilder.createTextMessage(
                             talkGroup, SessionTypeEnum.Team, content);
                 }

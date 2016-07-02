@@ -1,35 +1,30 @@
 package com.vickee.wetalk.main;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.RequestCallback;
-import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
-import com.netease.nimlib.sdk.friend.model.AddFriendData;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.main.recentNews.RecentFragment;
 import com.vickee.wetalk.main.teamList.TeamFragment;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener
-        , RecentFragment.OnFragmentInteractionListener
-        , FriendsFragment.OnFragmentInteractionListener
-        , TeamFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton search_button;
+//    private ImageButton search_button;
+
+    private Toolbar toolbar;
 
     private LinearLayout recent_ll;
     private LinearLayout friends_ll;
@@ -47,61 +42,55 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private Fragment friendsFragment;
     private Fragment teamFragment;
 
-    PopupMenu popupMenu = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        search_button = (ImageButton)findViewById(R.id.search_btn);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        recent_ll = (LinearLayout)findViewById(R.id.recentTalk_ll);
-        friends_ll = (LinearLayout)findViewById(R.id.friends_ll);
+//        search_button = (ImageButton) findViewById(R.id.search_btn);
+
+        recent_ll = (LinearLayout) findViewById(R.id.recentTalk_ll);
+        friends_ll = (LinearLayout) findViewById(R.id.friends_ll);
         team_ll = (LinearLayout) findViewById(R.id.team_ll);
 
-        recent_iv = (ImageView)findViewById(R.id.recentTalk_iv);
-        friends_iv = (ImageView)findViewById(R.id.friends_iv);
-        team_iv = (ImageView)findViewById(R.id.team_iv);
+        recent_iv = (ImageView) findViewById(R.id.recentTalk_iv);
+        friends_iv = (ImageView) findViewById(R.id.friends_iv);
+        team_iv = (ImageView) findViewById(R.id.team_iv);
 
-        recent_tv = (TextView)findViewById(R.id.recentTalk_tv);
-        friends_tv = (TextView)findViewById(R.id.friends_tv);
-        team_tv = (TextView)findViewById(R.id.team_tv);
+        recent_tv = (TextView) findViewById(R.id.recentTalk_tv);
+        friends_tv = (TextView) findViewById(R.id.friends_tv);
+        team_tv = (TextView) findViewById(R.id.team_tv);
 
         final VerifyType verifyType = VerifyType.DIRECT_ADD;
 
-//        MenuInflater inflater = popupMenu.getMenuInflater();
-//        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+//        search_button.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                return false;
+//            public void onClick(View v) {
+//                NIMClient.getService(FriendService.class)
+//                        .addFriend(new AddFriendData("user2_test", verifyType, ""))
+//                        .setCallback(new RequestCallback<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Toast.makeText(getApplicationContext(),
+//                                        "添加好友成功", Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            @Override
+//                            public void onFailed(int i) {
+//                                Toast.makeText(getApplicationContext(),
+//                                        "添加好友失败", Toast.LENGTH_LONG).show();
+//                            }
+//
+//                            @Override
+//                            public void onException(Throwable throwable) {
+//
+//                            }
+//                        });
 //            }
 //        });
-        search_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NIMClient.getService(FriendService.class)
-                        .addFriend(new AddFriendData("user2_test",verifyType,""))
-                        .setCallback(new RequestCallback<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getApplicationContext(),
-                                        "添加好友成功",Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onFailed(int i) {
-                                Toast.makeText(getApplicationContext(),
-                                        "添加好友失败",Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onException(Throwable throwable) {
-
-                            }
-                        });
-            }
-        });
 
 
         recent_ll.setOnClickListener(this);
@@ -111,32 +100,32 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         initFragment(0);
     }
 
-    private void initFragment(int index){
+    private void initFragment(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideFragment(transaction);
-        switch (index){
+        switch (index) {
             case 0:
-                if(recentFragment == null){
+                if (recentFragment == null) {
                     recentFragment = new RecentFragment();
                     transaction.add(R.id.f1_content, recentFragment);
-                }else{
+                } else {
                     transaction.show(recentFragment);
                 }
                 break;
             case 1:
-                if(friendsFragment == null){
+                if (friendsFragment == null) {
                     friendsFragment = new FriendsFragment();
                     transaction.add(R.id.f1_content, friendsFragment);
-                }else{
+                } else {
                     transaction.show(friendsFragment);
                 }
                 break;
             case 2:
-                if(teamFragment == null){
+                if (teamFragment == null) {
                     teamFragment = new TeamFragment();
                     transaction.add(R.id.f1_content, teamFragment);
-                }else{
+                } else {
                     transaction.show(teamFragment);
                 }
                 break;
@@ -146,19 +135,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         transaction.commit();
     }
 
-    private void hideFragment(FragmentTransaction transaction){
-        if(recentFragment != null){
+    private void hideFragment(FragmentTransaction transaction) {
+        if (recentFragment != null) {
             transaction.hide(recentFragment);
         }
-        if(friendsFragment != null){
+        if (friendsFragment != null) {
             transaction.hide(friendsFragment);
         }
-        if(teamFragment != null){
+        if (teamFragment != null) {
             transaction.hide(teamFragment);
         }
     }
 
-    private void restartButton(){
+    private void restartButton() {
         recent_iv.setImageResource(R.drawable.logo_temp);
         friends_iv.setImageResource(R.drawable.logo_temp);
         team_iv.setImageResource(R.drawable.logo_temp);
@@ -193,14 +182,24 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri){
-        Toast.makeText(this,"test onFragmentInteractionListener",Toast.LENGTH_LONG).show();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
-//    public void onPopupButtonClick(View button){
-//        popupMenu = new PopupMenu(this, button);
-//        getMenuInflater().inflate;
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_add:
+                Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_find:
+                Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+                break;
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
 

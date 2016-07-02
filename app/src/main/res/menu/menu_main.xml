@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_add"
+        android:title="Add"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_find"
+        android:title="Find"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+</menu>

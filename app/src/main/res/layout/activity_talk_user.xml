@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
     <!--
         tools:context="com.vickee.wetalk.talkUser.TalkUserActivity"
     -->
@@ -12,40 +12,43 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#6699FF">
+
         <TextView
             android:id="@+id/talkUserName_tv"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:text="@string/app_name"
             android:textSize="36sp" />
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/msgShow_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1" />
 
-    </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_gravity="bottom"
         android:orientation="horizontal">
+
         <EditText
             android:id="@+id/msgText_et"
             android:layout_width="260dp"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:background="@drawable/input_normal"
             android:hint="请输入消息内容"
+            android:textColor="@color/black"
             android:textColorHint="#BFBFBF"
-            android:background="@drawable/input_normal"/>
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/sendMsg_btn"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="@drawable/login_btn_selector"
             android:text="发送" />
     </LinearLayout>
