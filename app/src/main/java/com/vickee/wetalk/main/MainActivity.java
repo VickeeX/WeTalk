@@ -1,5 +1,6 @@
 package com.vickee.wetalk.main;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,12 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
+import com.netease.nimlib.sdk.friend.model.AddFriendData;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.main.recentNews.RecentFragment;
@@ -66,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recent_tv = (TextView) findViewById(R.id.recentTalk_tv);
         friends_tv = (TextView) findViewById(R.id.friends_tv);
         team_tv = (TextView) findViewById(R.id.team_tv);
-
-        final VerifyType verifyType = VerifyType.DIRECT_ADD;
 
         recent_ll.setOnClickListener(this);
         friends_ll.setOnClickListener(this);
@@ -185,11 +189,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater searchFriendInflater = getLayoutInflater();
         View searchFriendLayout = searchFriendInflater.inflate(R.layout.search_dialog
                 , (ViewGroup)findViewById(R.id.search_friend_dialog));
+
+        final EditText editText = (EditText)findViewById(R.id.search_friend_dialog_et);
+        final TextView textView = (TextView)findViewById(R.id.search_friend_dialog_tv);
+        final VerifyType verifyType = VerifyType.DIRECT_ADD;
+
         new AlertDialog.Builder(this).setTitle("搜索用户")
                 .setView(searchFriendLayout)
-                .setPositiveButton("添加",null)
-                .setNegativeButton("取消",null)
-                .show();
+                .setPositiveButton("添加", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final String searchUser = editText.getText().toString();
+                        NIMClient.getService(FriendService.class)
+                                .addFriend(new AddFriendData(searchUser, verifyType, ""))
+                                .setCallback(new RequestCallback<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        textView.setText("添加 " + searchUser + "为好友成功");
+//                                        Toast.makeText(getApplicationContext(),
+//                                                "添加" + searchUser + "成功", Toast.LENGTH_LONG).show();
+                                    }
+                                    @Override
+                                    public void onFailed(int i) {
+                                        textView.setText("添加 " + searchUser + "为好友失败");
+//                                        Toast.makeText(getApplicationContext(),
+//                                                "添加好友失败", Toast.LENGTH_LONG).show();
+                                    }
+                                    @Override
+                                    public void onException(Throwable throwable) {
+
+                                    }
+                                });
+                    }
+                }).setNegativeButton("取消",null).show();
     }
 
     public void addTeam() {
@@ -201,9 +233,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 }
-
-
-
 
 //        search_button.setOnClickListener(new View.OnClickListener() {
 //            @Override
