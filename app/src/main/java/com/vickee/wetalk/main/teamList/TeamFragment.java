@@ -12,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.team.TeamService;
+import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
 
@@ -92,15 +95,15 @@ public class TeamFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(teamListAdapter);
 
-//        List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
-//        if (teamList1 != null){
-//            for(Team eachTeam: teamList1){
-//                teams.add(eachTeam.getId());
-//            }
-//        }
-        for (int i=0; i<6;i++){
-            teams.add("TestGroup");
+        List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
+        if (teamList1 != null){
+            for(Team eachTeam: teamList1){
+                teams.add(eachTeam.getId());
+            }
         }
+//        for (int i=0; i<6;i++){
+//            teams.add("TestGroup");
+//        }
 
         teamListAdapter.UpdateAdapterData(teams);
         teamListAdapter.setOnItemClickListener(new TeamListAdapter.OnItemClickListener(){
