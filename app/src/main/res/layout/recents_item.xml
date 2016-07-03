@@ -16,17 +16,17 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:text="暂无最近联系人"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="16dp"/>
 
         <TextView
             android:id="@+id/time_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/grey"
             android:gravity="end"
             android:layout_gravity="end"
-            android:textSize="20sp"
-            android:paddingRight="10dp"/>
+            android:textSize="16sp"
+            android:paddingRight="16dp"/>
     </LinearLayout>
 
     <TextView
@@ -34,8 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:text="暂无最近消息"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="16dp"/>
 
 </LinearLayout>
