@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.friend.FriendService;
+import com.netease.nimlib.sdk.uinfo.UserService;
+import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
 
@@ -54,14 +56,20 @@ public class FriendsFragment extends Fragment {
         List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
         if (friendAccounts != null)
             friends.addAll(friendAccounts);
+        List<NimUserInfo> users = NIMClient.getService(UserService.class).getUserInfoList(friends);
+        friends.clear();
+        for(NimUserInfo user: users){
+            friends.add(user.getName());
+        }
+
         friendsListAdapter.UpdateAdapterData(friends);
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                String id = friends.get(position);
+                String Nickname = friends.get(position);
 
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
-                intent.putExtra("TalkPerson", id);
+                intent.putExtra("TalkPerson", Nickname);
                 startActivity(intent);
             }
         });
