@@ -55,11 +55,12 @@ public class RecentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        recyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
+//        recyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
+
         recyclerView.setAdapter(myRecyclerAdapter);
 
         NIMClient.getService(MsgService.class).queryRecentContacts()

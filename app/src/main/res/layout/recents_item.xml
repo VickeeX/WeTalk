@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/account_tv"
             android:layout_width="wrap_content"
@@ -16,13 +17,14 @@
             android:textSize="20sp"
             android:text="暂无最近联系人"
             android:paddingLeft="10dp"/>
+
         <TextView
             android:id="@+id/time_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:gravity="right"
             android:textSize="20sp"
-            android:text="time"
             android:paddingRight="10dp"/>
     </LinearLayout>
 
@@ -30,7 +32,6 @@
         android:id="@+id/content_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:textColor="@color/grey"
         android:textSize="18sp"
         android:text="暂无最近消息"

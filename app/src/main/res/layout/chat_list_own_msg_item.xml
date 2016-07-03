@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:gravity="right">
+    android:gravity="right"
+    android:orientation="horizontal">
 
     <!--<TextView-->
     <!--android:id="@+id/tv_send_msg_date"-->
@@ -15,23 +15,36 @@
     <!--android:textSize="12sp"-->
     <!--android:visibility="gone" />-->
 
+    <android.support.v4.widget.Space
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_item_send_txt_own"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="6dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="8dp"
-        android:paddingTop="6dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/own_person_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/contact_person_logo" />
-    <!--android:layout_marginLeft="110dp"-->
-    <!--android:layout_marginRight="10dp"-->
+        <TextView
+            android:id="@+id/tv_item_send_txt_own"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/own_person_image"
+            android:gravity="end"
+            android:paddingBottom="6dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:paddingTop="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/own_person_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/contact_person_logo" />
+        <!--android:layout_marginLeft="110dp"-->
+        <!--android:layout_marginRight="10dp"-->
+
+    </RelativeLayout>
+
 </LinearLayout>

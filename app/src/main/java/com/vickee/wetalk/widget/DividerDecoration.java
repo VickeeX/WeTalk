@@ -1,11 +1,13 @@
 package com.vickee.wetalk.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 
 /**
@@ -13,14 +15,16 @@ import android.view.View;
  */
 public class DividerDecoration extends RecyclerView.ItemDecoration {
 
-    private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
+    private final int height;
 
-    private Drawable mDivider;
+    private final Paint paint;
 
     public DividerDecoration(Context context) {
-        final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = a.getDrawable(0);
-        a.recycle();
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, displayMetrics);
+
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.GRAY);
     }
 
     @Override
@@ -34,9 +38,7 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params =
                     (RecyclerView.LayoutParams) child.getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin;
-            final int bottom = top + mDivider.getIntrinsicHeight();
-            mDivider.setBounds(left, top, right, bottom);
-            mDivider.draw(c);
+            c.drawRect(left, top, right, height, paint);
         }
     }
 
@@ -45,6 +47,6 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
                                View view,
                                RecyclerView parent,
                                RecyclerView.State state) {
-        outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+        outRect.set(0, 0, 0, height);
     }
 }
