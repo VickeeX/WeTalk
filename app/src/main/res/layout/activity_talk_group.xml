@@ -8,14 +8,14 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/talk_toolbar"
+        android:id="@+id/talkGroup_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:popupTheme="@style/PopupOverlay" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/msgShow_rv"
+        android:id="@+id/msgGroupShow_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
@@ -27,7 +27,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/msgText_et"
+            android:id="@+id/msgGroupText_et"
             android:layout_width="260dp"
             android:layout_height="match_parent"
             android:background="@drawable/input_normal"
@@ -37,7 +37,7 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/sendMsg_btn"
+            android:id="@+id/sendGroupMsg_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

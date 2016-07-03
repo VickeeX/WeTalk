@@ -18,6 +18,7 @@ import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.main.talkGroup.TalkGroupActivity;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
@@ -79,13 +80,14 @@ public class RecentFragment extends Fragment {
         myRecyclerAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                Intent intent;
                 String recentId = recentContactList.get(position).getContactId();
-
-                Intent intent = new Intent(getActivity(), TalkUserActivity.class);
                 boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
                 if ( isMyFriend ){
+                    intent = new Intent(getActivity(), TalkUserActivity.class);
                     intent.putExtra("TalkPerson", recentId);
                 }else{
+                    intent = new Intent(getActivity(), TalkGroupActivity.class);
                     intent.putExtra("TalkGroup",recentId);
                 }
                 startActivity(intent);

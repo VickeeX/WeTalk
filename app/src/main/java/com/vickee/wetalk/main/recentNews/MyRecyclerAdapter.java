@@ -39,7 +39,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     @Override
     public void onBindViewHolder(final MyRecyclerAdapter.mViewHolder holder, int position) {
         RecentContact recentContact = mDatas.get(position);
-        holder.account.setText(recentContact.getFromNick());
+        holder.account.setText(recentContact.getContactId());
         holder.time.setText(Utils.format(recentContact.getTime()));
         if (recentContact.getContent() != null) {
             holder.content.setText(recentContact.getContent());

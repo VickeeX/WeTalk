@@ -89,7 +89,11 @@
         <activity
             android:name=".main.teamList.CreateTeamActivity"
             android:label="@string/title_activity_create_team"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".main.talkGroup.TalkGroupActivity"
+            android:label="@string/title_activity_talk_group"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>

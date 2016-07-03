@@ -1,4 +1,4 @@
-package com.vickee.wetalk.talkUser;
+package com.vickee.wetalk.main.talkGroup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,47 +19,45 @@ import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalkUserActivity extends AppCompatActivity {
+public class TalkGroupActivity extends AppCompatActivity {
 
     //    private TextView talkUser_tv;
     private EditText content_et;
     private Button send_btn;
-    private Toolbar talk_toolbar;
 
-    private String talkUser;
+    private String talkGroup;
     private String talkObject;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
     private List<IMMessage> msg;
     private Observer<List<IMMessage>> incomingMessageObserver;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_talk_user);
-
-        talk_toolbar = (Toolbar) findViewById(R.id.talk_toolbar);
-        setSupportActionBar(talk_toolbar);
+        setContentView(R.layout.activity_talk_group);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.talkGroup_toolbar);
+        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        talkUser = intent.getStringExtra("TalkPerson");
-        setTitle("好友: " + talkUser);
-        NIMClient.getService(MsgService.class).setChattingAccount(talkUser, SessionTypeEnum.P2P);
-        talkObject = talkUser;
+        talkGroup = intent.getStringExtra("TalkGroup");
+        Log.e("GetTalkGroup:", talkGroup);
+        setTitle("群组: " + talkGroup);
+        NIMClient.getService(MsgService.class).setChattingAccount(talkGroup, SessionTypeEnum.Team);
+        talkObject = talkGroup;
 
-
-        content_et = (EditText) findViewById(R.id.msgText_et);
-        send_btn = (Button) findViewById(R.id.sendMsg_btn);
+        content_et = (EditText) findViewById(R.id.msgGroupText_et);
+        send_btn = (Button) findViewById(R.id.sendGroupMsg_btn);
 
         msg = new ArrayList<>();
         chatMsgListAdapter = new ChatMsgListAdapter(this);
 
-        recyclerView = (RecyclerView) findViewById(R.id.msgShow_rv);
+        recyclerView = (RecyclerView) findViewById(R.id.msgGroupShow_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(chatMsgListAdapter);
 
@@ -71,13 +69,10 @@ public class TalkUserActivity extends AppCompatActivity {
                 IMMessage message;
 
                 message = MessageBuilder.createTextMessage(
-                        talkUser, SessionTypeEnum.P2P, content);
-
+                        talkGroup, SessionTypeEnum.Team, content);
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
-                Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUser);
                 chatMsgListAdapter.UpdateAdapterData(message);
                 content_et.setText("");
-
             }
         });
 
@@ -87,7 +82,7 @@ public class TalkUserActivity extends AppCompatActivity {
             public void onEvent(List<IMMessage> messages) {
                 msg.clear();
                 for (IMMessage imMessage : messages) {
-                    if (imMessage.getFromAccount().equals(talkObject)) {
+                    if (imMessage.getSessionId().equals(talkObject)) {
                         msg.add(imMessage);
                     }
                 }
@@ -106,3 +101,13 @@ public class TalkUserActivity extends AppCompatActivity {
                 .observeReceiveMessage(incomingMessageObserver, false);
     }
 }
+
+
+//        extends AppCompatActivity {
+//
+
+//
+//
+//    }
+//
+//}
