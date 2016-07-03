@@ -64,7 +64,8 @@ public class CreateTeamActivity extends AppCompatActivity {
         accounts = new ArrayList<>();
         accounts.add(userAccount);
         final List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
-        final String[] friendList = (String[]) friendAccounts.toArray();
+        final String[] friendList = new String[friendAccounts.size()];
+        friendAccounts.toArray(friendList);
 //        final String[] friendList = new String[friendAccounts.size()];
         final boolean[] boolFriend = new boolean[friendAccounts.size()];
         for (int i = 0; i < friendAccounts.size(); i++) {
