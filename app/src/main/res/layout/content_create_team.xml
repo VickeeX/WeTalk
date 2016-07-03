@@ -73,6 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top"
             android:paddingLeft="8dp"
             android:paddingRight="16dp"
             android:text="群成员: "
@@ -82,7 +83,7 @@
         <EditText
             android:id="@+id/create_group_member_et"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="250dp"
             android:background="@drawable/input_normal"
             android:hint="请从好友中选择群成员"
             android:textColor="#000000"
@@ -90,12 +91,26 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/createGroup_btn"
-        android:layout_width="110dip"
-        android:layout_height="35dip"
-        android:layout_gravity="right"
-        android:background="@drawable/login_btn_selector"
-        android:gravity="bottom"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/select_member_btn"
+            android:layout_width="103dp"
+            android:layout_height="35dp"
+            android:background="@drawable/login_btn_selector"
+            android:text="添加成员" />
+
+        <Button
+            android:id="@+id/createGroup_btn"
+            android:layout_width="103dp"
+            android:layout_height="35dp"
+            android:background="@drawable/login_btn_selector"
+            android:text="创建该群"/>
+    </LinearLayout>
+
 
 </LinearLayout>

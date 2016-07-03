@@ -86,7 +86,7 @@ public class TalkUserActivity extends AppCompatActivity {
             public void onEvent(List<IMMessage> messages) {
                 msg.clear();
                 for (IMMessage imMessage : messages) {
-                    if (imMessage.getFromAccount().equals(talkObject)) {
+                    if (imMessage.getSessionId().equals(talkObject)) {
                         msg.add(imMessage);
                     }
                 }
