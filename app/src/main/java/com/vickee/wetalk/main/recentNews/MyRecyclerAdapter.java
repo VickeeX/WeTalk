@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +36,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
 
     @Override
     public void onBindViewHolder(final MyRecyclerAdapter.mViewHolder holder, int position) {
-        holder.account.setText(mDatas.get(position).getContactId());
-        holder.time.setText("2016-7");
-
-//        holder.time.setText(mDatas.get(position).getTime());
-        if(mDatas.get(position).getContent() != null){
-            holder.content.setText(mDatas.get(position).getContent());
+        RecentContact recentContact = mDatas.get(position);
+        holder.account.setText(recentContact.getContactId());
+        holder.time.setText(Utils.format(recentContact.getTime()));
+        if(recentContact.getContent() != null){
+            holder.content.setText(recentContact.getContent());
         }else{
             holder.content.setText("暂无最近消息");
         }
