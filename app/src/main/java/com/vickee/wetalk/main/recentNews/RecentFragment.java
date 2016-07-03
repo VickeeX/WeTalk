@@ -86,9 +86,12 @@ public class RecentFragment extends Fragment {
                 if ( isMyFriend ){
                     intent = new Intent(getActivity(), TalkUserActivity.class);
                     intent.putExtra("TalkPerson", recentId);
+//                    intent.putExtra("Recents",recentContactList.get(position));
                 }else{
                     intent = new Intent(getActivity(), TalkGroupActivity.class);
                     intent.putExtra("TalkGroup",recentId);
+//                    intent.putExtra("RecentsContent",recentContactList.get(position).getContent());
+//                    intent.putExtra("RecentsId",recentContactList.get(position).getContactId());
                 }
                 startActivity(intent);
             }

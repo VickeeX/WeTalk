@@ -29,7 +29,6 @@ public class TalkUserActivity extends AppCompatActivity {
     private EditText content_et;
     private Button send_btn;
     private Toolbar talk_toolbar;
-
     private String talkUser;
     private String talkObject;
     private RecyclerView recyclerView;
@@ -43,7 +42,7 @@ public class TalkUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_user);
 
-        talk_toolbar = (Toolbar) findViewById(R.id.talk_toolbar);
+        talk_toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(talk_toolbar);
 
         Intent intent = getIntent();
