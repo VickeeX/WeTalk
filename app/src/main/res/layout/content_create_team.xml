@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingRight="10dp"
             android:text="群名称: "
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingRight="10dp"
             android:text="群简介: "
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:gravity="top"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingRight="10dp"
             android:text="群成员: "
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -110,6 +110,7 @@
             android:layout_width="10dp"
             android:layout_height="35dp"
             android:background="@drawable/login_btn_selector"
+            android:paddingRight="10dp"
             android:text="创建该群"/>
     </LinearLayout>
 

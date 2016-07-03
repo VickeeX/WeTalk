@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@+id/own_person_image"
+            android:layout_toLeftOf="@+id/own_person_image"
             android:gravity="end"
             android:paddingBottom="6dp"
             android:paddingLeft="16dp"
@@ -40,8 +41,10 @@
             android:id="@+id/own_person_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/contact_person_logo" />
+            android:background="@drawable/contact_person_logo"
+            android:paddingRight="12dp"/>
         <!--android:layout_marginLeft="110dp"-->
         <!--android:layout_marginRight="10dp"-->
 
