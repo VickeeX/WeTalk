@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_group_info"
+        android:title="群资料"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_group_exit"
+        android:title="退出群"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_group_dismiss"
+        android:title="解散群"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+</menu>

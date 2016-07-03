@@ -7,9 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -100,14 +103,28 @@ public class TalkGroupActivity extends AppCompatActivity {
         NIMClient.getService(MsgServiceObserve.class)
                 .observeReceiveMessage(incomingMessageObserver, false);
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_group, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_group_info:
+                Toast.makeText(TalkGroupActivity.this,"GroupInfo",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_group_exit:
+                Toast.makeText(TalkGroupActivity.this,"GroupExit",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_group_dismiss:
+                Toast.makeText(TalkGroupActivity.this,"GroupDismiss",Toast.LENGTH_SHORT).show();
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
-
-
-//        extends AppCompatActivity {
-//
-
-//
-//
-//    }
-//
-//}

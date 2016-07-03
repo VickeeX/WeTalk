@@ -94,6 +94,7 @@ public class CreateTeamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 builder.show();
+                editMemberText.setText(accounts.toString());
             }
         });
 

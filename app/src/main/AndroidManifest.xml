@@ -93,7 +93,11 @@
         <activity
             android:name=".main.talkGroup.TalkGroupActivity"
             android:label="@string/title_activity_talk_group"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".main.talkGroup.GroupInfoActivity"
+            android:label="@string/title_activity_group_info"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
