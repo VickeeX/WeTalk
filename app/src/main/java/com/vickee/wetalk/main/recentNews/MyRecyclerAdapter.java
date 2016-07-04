@@ -58,9 +58,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
             for (Team team : teamList1) {
                 if (team.getId().equals(recentId)) {
                     accountSet = team.getName();
+                }else{
+                    accountSet = recentId;
                 }
             }
-
         }
 
         holder.account.setText(accountSet);
