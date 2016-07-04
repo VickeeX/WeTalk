@@ -56,14 +56,15 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
             accountSet = user.getName();
         } else {
             for (Team team : teamList1) {
-                if (team.getId().equals(recentId)) {
+                if (team.getId().equals(recentId) && team.getName() != null
+                        && team.getName().length() != 0) {
                     accountSet = team.getName();
+                    break;
                 } else {
                     accountSet = recentId;
                 }
             }
         }
-        Log.e("IdError", accountSet + "," + recentId);
         holder.account.setText(accountSet);
         holder.time.setText(Utils.format(recentContact.getTime()));
         if (recentContact.getContent() != null) {
@@ -112,7 +113,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
         notifyDataSetChanged();
     }
 
-    public static interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 

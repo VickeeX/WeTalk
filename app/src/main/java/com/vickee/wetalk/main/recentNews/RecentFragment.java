@@ -36,7 +36,8 @@ public class RecentFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyRecyclerAdapter myRecyclerAdapter;
 
-    public RecentFragment() { }
+    public RecentFragment() {
+    }
 
 
     @Override
@@ -61,7 +62,7 @@ public class RecentFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recentTalk_rv);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recentTalk_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
 //        recyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
@@ -76,7 +77,7 @@ public class RecentFragment extends Fragment {
                         if (recents != null)
                             recentContactList = recents;
 
-                        Log.e("Recents:","size="+recentContactList.size());
+                        Log.e("Recents:", "size=" + recentContactList.size());
                         myRecyclerAdapter.UpdateAdapterData(recentContactList);
                     }
                 });
@@ -87,23 +88,24 @@ public class RecentFragment extends Fragment {
                 Intent intent;
                 String recentId = recentContactList.get(position).getContactId();
                 boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
-                if ( isMyFriend ){
+                if (isMyFriend) {
                     NimUserInfo userInfo = NIMClient.getService(UserService.class).getUserInfo(recentId);
                     intent = new Intent(getActivity(), TalkUserActivity.class);
                     intent.putExtra("TalkPersonId", recentId);
                     intent.putExtra("TalkPersonName", userInfo.getName());
-                }else{
+                } else {
 
                     String teamName = null;
                     final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
-                    for (Team team:teamList1){
-                        if (team.getId().equals(recentId)){
-                             teamName= team.getName();
+                    for (Team team : teamList1) {
+                        if (team.getId().equals(recentId) && team.getName() != null
+                                && team.getName().length() != 0) {
+                            teamName = team.getName();
                         }
                     }
                     intent = new Intent(getActivity(), TalkGroupActivity.class);
-                    intent.putExtra("TalkTeamId",recentId);
-                    intent.putExtra("TalkTeamName",teamName);
+                    intent.putExtra("TalkTeamId", recentId);
+                    intent.putExtra("TalkTeamName", teamName);
 //                    intent.putExtra("RecentsContent",recentContactList.get(position).getContent());
 //                    intent.putExtra("RecentsId",recentContactList.get(position).getContactId());
                 }

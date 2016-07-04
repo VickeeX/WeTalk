@@ -17,26 +17,31 @@ import java.util.List;
 /**
  * Created by Vickee on 2016/7/2.
  */
-public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tViewHolder>{
+public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.tViewHolder> {
     private Context mContext;
     private List<Team> mDatas;
     private OnItemClickListener mOnItemClickListener;
 
-    public TeamListAdapter(Context context){
+    public TeamListAdapter(Context context) {
         this.mContext = context;
         mDatas = new ArrayList<>();
     }
 
     @Override
     public tViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new tViewHolder(LayoutInflater.from(mContext).inflate(R.layout.team_item,null));
+        return new tViewHolder(LayoutInflater.from(mContext).inflate(R.layout.team_item, null));
     }
 
     @Override
     public void onBindViewHolder(final tViewHolder holder, int position) {
-        holder.textView.setText(mDatas.get(position).getName());
-        if (mOnItemClickListener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener(){
+        final String name = mDatas.get(position).getName();
+        if (name != null && name.length() != 0) {
+            holder.textView.setText(name);
+        } else {
+            holder.textView.setText(mDatas.get(position).getId());
+        }
+        if (mOnItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition();
@@ -51,27 +56,28 @@ public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tView
         return mDatas.size();
     }
 
-    class tViewHolder extends RecyclerView.ViewHolder{
+    class tViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+
         public tViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.team_item_tv);
-            Log.e("Team: ","new viewholder");
+            Log.e("Team: ", "new viewholder");
         }
     }
 
-    public void UpdateAdapterData(List<Team> datas){
+    public void UpdateAdapterData(List<Team> datas) {
         mDatas.clear();
         mDatas.addAll(datas);
-        Log.e("Team: ","size="+mDatas.size());
+        Log.e("Team: ", "size=" + mDatas.size());
         notifyDataSetChanged();
     }
 
-    public static interface OnItemClickListener{
+    public static interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
 }
