@@ -58,12 +58,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
             for (Team team : teamList1) {
                 if (team.getId().equals(recentId)) {
                     accountSet = team.getName();
-                }else{
+                } else {
                     accountSet = recentId;
                 }
             }
         }
-
+        Log.e("IdError", accountSet + "," + recentId);
         holder.account.setText(accountSet);
         holder.time.setText(Utils.format(recentContact.getTime()));
         if (recentContact.getContent() != null) {
