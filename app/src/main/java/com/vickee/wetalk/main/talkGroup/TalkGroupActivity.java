@@ -33,7 +33,8 @@ public class TalkGroupActivity extends AppCompatActivity {
     private EditText content_et;
     private Button send_btn;
 
-    private String talkGroup;
+    private String talkTeamId;
+    private String talkTeamName;
     private String talkObject;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
@@ -48,11 +49,16 @@ public class TalkGroupActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        talkGroup = intent.getStringExtra("TalkGroup");
-        Log.e("GetTalkGroup:", talkGroup);
-        setTitle("群组: " + talkGroup);
-        NIMClient.getService(MsgService.class).setChattingAccount(talkGroup, SessionTypeEnum.Team);
-        talkObject = talkGroup;
+        talkTeamId = intent.getStringExtra("TalkTeamId");
+        talkTeamName = intent.getStringExtra("TalkTeamName");
+        Log.e("GetTalkGroTup:", talkTeamId);
+        if (talkTeamName != null && talkTeamName.length() != 0) {
+            setTitle("群组: " + talkTeamName);
+        } else {
+            setTitle("群组: " + talkTeamId);
+        }
+        NIMClient.getService(MsgService.class).setChattingAccount(talkTeamId, SessionTypeEnum.Team);
+        talkObject = talkTeamId;
 
         content_et = (EditText) findViewById(R.id.msgGroupText_et);
         send_btn = (Button) findViewById(R.id.sendGroupMsg_btn);
@@ -72,7 +78,7 @@ public class TalkGroupActivity extends AppCompatActivity {
                 IMMessage message;
 
                 message = MessageBuilder.createTextMessage(
-                        talkGroup, SessionTypeEnum.Team, content);
+                        talkTeamId, SessionTypeEnum.Team, content);
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
                 chatMsgListAdapter.UpdateAdapterData(message);
                 content_et.setText("");
@@ -115,13 +121,13 @@ public class TalkGroupActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_group_info:
-                Toast.makeText(TalkGroupActivity.this,"GroupInfo",Toast.LENGTH_SHORT).show();
+                Toast.makeText(TalkGroupActivity.this, "GroupInfo", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_group_exit:
-                Toast.makeText(TalkGroupActivity.this,"GroupExit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(TalkGroupActivity.this, "GroupExit", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_group_dismiss:
-                Toast.makeText(TalkGroupActivity.this,"GroupDismiss",Toast.LENGTH_SHORT).show();
+                Toast.makeText(TalkGroupActivity.this, "GroupDismiss", Toast.LENGTH_SHORT).show();
             default:
                 break;
         }

@@ -16,13 +16,11 @@ import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.talkGroup.TalkGroupActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class TeamFragment extends Fragment {
 
-    private List<String> teams;
     private RecyclerView recyclerView;
     private TeamListAdapter teamListAdapter;
 
@@ -34,7 +32,6 @@ public class TeamFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        teams = new ArrayList<>();
         teamListAdapter = new TeamListAdapter(getActivity());
     }
 
@@ -52,23 +49,14 @@ public class TeamFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(teamListAdapter);
 
-        List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
-        if (teamList1 != null) {
-            for (Team eachTeam : teamList1) {
-                teams.add(eachTeam.getId());
-            }
-        }
-//        for (int i=0; i<6;i++){
-//            teams.add("TestGroup");
-//        }
-
-        teamListAdapter.UpdateAdapterData(teams);
+        final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
+        teamListAdapter.UpdateAdapterData(teamList1);
         teamListAdapter.setOnItemClickListener(new TeamListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                String id = teams.get(position);
                 Intent intent = new Intent(getActivity(), TalkGroupActivity.class);
-                intent.putExtra("TalkGroup", id);
+                intent.putExtra("TalkTeamId", teamList1.get(position).getId());
+                intent.putExtra("TalkTeamName", teamList1.get(position).getName());
                 startActivity(intent);
             }
         });

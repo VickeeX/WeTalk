@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tViewHolder>{
     private Context mContext;
-    private List<String> mDatas;
+    private List<Team> mDatas;
     private OnItemClickListener mOnItemClickListener;
 
     public TeamListAdapter(Context context){
@@ -33,7 +34,7 @@ public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tView
 
     @Override
     public void onBindViewHolder(final tViewHolder holder, int position) {
-        holder.textView.setText(mDatas.get(position));
+        holder.textView.setText(mDatas.get(position).getName());
         if (mOnItemClickListener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -66,7 +67,7 @@ public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tView
 ////            }
 ////        });
 
-    public void UpdateAdapterData(List<String> datas){
+    public void UpdateAdapterData(List<Team> datas){
         mDatas.clear();
         mDatas.addAll(datas);
         Log.e("Team: ","size="+mDatas.size());

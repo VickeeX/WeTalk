@@ -89,7 +89,8 @@ public class RecentFragment extends Fragment {
 //                    intent.putExtra("Recents",recentContactList.get(position));
                 }else{
                     intent = new Intent(getActivity(), TalkGroupActivity.class);
-                    intent.putExtra("TalkGroup",recentId);
+                    intent.putExtra("TalkTeamId",recentId);
+                    intent.putExtra("TalkTeamName",recentContactList.get(position).getContactId());
 //                    intent.putExtra("RecentsContent",recentContactList.get(position).getContent());
 //                    intent.putExtra("RecentsId",recentContactList.get(position).getContactId());
                 }
