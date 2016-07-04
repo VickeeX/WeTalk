@@ -34,11 +34,16 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.tViewH
 
     @Override
     public void onBindViewHolder(final tViewHolder holder, int position) {
-        final String name = mDatas.get(position).getName();
+        final Team temp = mDatas.get(position);
+        final String name = temp.getName();
+        final String sign = temp.getIntroduce();
         if (name != null && name.length() != 0) {
             holder.textView.setText(name);
         } else {
             holder.textView.setText(mDatas.get(position).getId());
+        }
+        if (sign != null && sign.length() != 0) {
+            holder.textView_sign.setText(sign);
         }
         if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -58,10 +63,12 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.tViewH
 
     class tViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public TextView textView_sign;
 
         public tViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.team_item_tv);
+            textView_sign = (TextView) itemView.findViewById(R.id.team_item_sign_tv);
             Log.e("Team: ", "new viewholder");
         }
     }

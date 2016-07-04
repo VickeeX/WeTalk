@@ -2,13 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
     <TextView
-        android:text="xxxxxxx"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:id="@+id/team_item_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"/>
+        android:paddingLeft="16dp"
+        android:text="xxxxxxx"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/team_item_sign_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:text="群主太懒没有留下信息。"
+        android:textColor="@color/grey"
+        android:textSize="16sp" />
 </LinearLayout>

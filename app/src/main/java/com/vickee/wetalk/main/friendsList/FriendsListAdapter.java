@@ -40,7 +40,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     @Override
     public void onBindViewHolder(final mViewHolder holder, int position) {
         friendInfo = NIMClient.getService(UserService.class).getUserInfo(mDatas.get(position));
-        holder.textView.setText(friendInfo.getAccount());
+        holder.textView.setText(friendInfo.getName());
         if (friendInfo.getSignature() != null && friendInfo.getSignature().length() != 0) {
             holder.textView_sign.setText(friendInfo.getSignature());
         }
