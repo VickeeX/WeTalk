@@ -57,11 +57,13 @@ public class CreateTeamActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.create_group_name_et);
         editIntroText = (EditText) findViewById(R.id.create_group_introduce_et);
         editMemberText = (EditText) findViewById(R.id.create_group_member_et);
+        editMemberText.setFocusable(false);
         selectMember = (Button) findViewById(R.id.select_member_btn);
         createButton = (Button) findViewById(R.id.createGroup_btn);
 
         accounts = new ArrayList<>();
         accounts.add(userAccount);
+
         final List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
         final String[] friendList = new String[friendAccounts.size()];
         friendAccounts.toArray(friendList);
@@ -85,15 +87,23 @@ public class CreateTeamActivity extends AppCompatActivity {
                                 }
                             }
                         })
-                .setPositiveButton("添加", null)
-                .setNegativeButton("取消", null);
+                .setPositiveButton("添加", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        editMemberText.setText("");
+                        for(String str:accounts){
+                            editMemberText.append(str+"\n");
+                        }
+                    }
+                });
+//                .setNegativeButton("取消", null);
         builder.create();
 
         selectMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 builder.show();
-                editMemberText.setText(accounts.toString());
+//                editMemberText.setText(accounts.toString());
             }
         });
 
@@ -111,7 +121,8 @@ public class CreateTeamActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Team team) {
                                 Intent intent = new Intent(CreateTeamActivity.this, TalkGroupActivity.class);
-                                intent.putExtra("TalkGroup", team.getId());
+                                intent.putExtra("TalkTeamId", team.getId());
+                                intent.putExtra("TalkTeamName", team.getName());
                                 startActivity(intent);
                                 finish();
                             }

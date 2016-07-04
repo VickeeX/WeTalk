@@ -31,7 +31,6 @@
             android:id="@+id/create_group_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_normal"
             android:hint="请输入群名"
             android:paddingRight="16dp"
             android:textColor="#000000"
@@ -57,7 +56,6 @@
             android:id="@+id/create_group_introduce_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_normal"
             android:hint="请输入群简介"
             android:paddingRight="16dp"
             android:textColor="#000000"
@@ -83,9 +81,9 @@
         <EditText
             android:id="@+id/create_group_member_et"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:background="@drawable/input_normal"
-            android:hint="请从好友中选择群成员"
+            android:layout_height="wrap_content"
+            android:minHeight="220dp"
+            android:hint="请通过按钮添加成员"
             android:paddingRight="16dp"
             android:textColor="#000000"
             android:textColorHint="@color/grey"
@@ -95,22 +93,20 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/select_member_btn"
             android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:background="@drawable/login_btn_selector"
+            android:layout_height="wrap_content"
             android:text="添加成员" />
 
         <Button
             android:id="@+id/createGroup_btn"
-            android:layout_width="10dp"
-            android:layout_height="35dp"
-            android:background="@drawable/login_btn_selector"
-            android:paddingRight="10dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:text="创建该群"/>
     </LinearLayout>
 

@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -60,7 +60,7 @@
             android:id="@+id/user_info_id_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -93,7 +93,7 @@
             android:id="@+id/user_info_sex_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -126,7 +126,7 @@
             android:id="@+id/user_info_birth_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -159,7 +159,7 @@
             android:id="@+id/user_info_tele_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -192,7 +192,7 @@
             android:id="@+id/user_info_mail_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="此人太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
