@@ -134,7 +134,9 @@ public class TalkGroupActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_group_info:
-                Toast.makeText(TalkGroupActivity.this, "GroupInfo", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(TalkGroupActivity.this, GroupInfoActivity.class);
+                intent.putExtra("TalkTeamId", talkTeamId);
+                startActivity(intent);
                 break;
             case R.id.menu_group_exit:
                 exitTeam();
