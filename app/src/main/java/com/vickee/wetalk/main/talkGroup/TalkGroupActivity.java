@@ -1,27 +1,34 @@
 package com.vickee.wetalk.main.talkGroup;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
+import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.netease.nimlib.sdk.team.TeamService;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.main.MainActivity;
 import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
 
 import java.util.ArrayList;
@@ -138,5 +145,42 @@ public class TalkGroupActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void exitTeam() {
+        LayoutInflater searchFriendInflater = getLayoutInflater();
+        View searchFriendLayout = searchFriendInflater.inflate(R.layout.dialog_team_exit
+                , null, false);
+
+        TextView textView = (TextView) searchFriendLayout.findViewById(R.id.delete_team_dialog_tv);
+        textView.setText("\n群名: " + talkTeamName + "\n账号: " + talkTeamId);
+
+        new AlertDialog.Builder(this).setTitle("退出群组")
+                .setView(searchFriendLayout)
+                .setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        NIMClient.getService(TeamService.class).quitTeam(talkTeamId)
+                                .setCallback(new RequestCallback<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Intent intent = new Intent(TalkGroupActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                        Toast.makeText(TalkGroupActivity.this
+                                                , "删除好友成功", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onFailed(int i) {
+                                        Toast.makeText(TalkGroupActivity.this
+                                                , "删除失败，请检查网络", Toast.LENGTH_LONG).show();
+                                    }
+                                    @Override
+                                    public void onException(Throwable throwable) {
+                                    }
+                                });
+                    }
+                }).setNegativeButton("取消", null).show();
     }
 }
