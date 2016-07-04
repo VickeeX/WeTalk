@@ -225,7 +225,7 @@
             android:id="@+id/team_info_intro_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未填写"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>

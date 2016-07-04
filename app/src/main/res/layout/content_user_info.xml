@@ -202,4 +202,37 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/grey" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="简介"
+            android:textColor="@color/blackgrey"
+
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/user_info_sign_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="此人太懒未填写"
+            android:textColor="@color/blackgrey"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey" />
+
 </LinearLayout>

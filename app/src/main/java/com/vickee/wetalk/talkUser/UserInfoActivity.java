@@ -32,6 +32,8 @@ public class UserInfoActivity extends AppCompatActivity {
         TextView info_birth = (TextView) findViewById(R.id.user_info_birth_tv);
         TextView info_tele = (TextView) findViewById(R.id.user_info_tele_tv);
         TextView info_mail = (TextView) findViewById(R.id.user_info_mail_tv);
+        TextView info_sign = (TextView) findViewById(R.id.user_info_sign_tv);
+
 
         info_id.setText(userInfo.getAccount());
 
@@ -49,6 +51,9 @@ public class UserInfoActivity extends AppCompatActivity {
         }
         if (userInfo.getEmail() != null && userInfo.getEmail().length() != 0) {
             info_mail.setText(userInfo.getEmail());
+        }
+        if (userInfo.getSignature() != null && userInfo.getSignature().length() != 0) {
+            info_sign.setText(userInfo.getSignature());
         }
     }
 }

@@ -62,8 +62,7 @@ public class FriendsFragment extends Fragment {
         for(NimUserInfo user: users){
             friends.add(user.getName());
         }
-
-        friendsListAdapter.UpdateAdapterData(friends);
+        friendsListAdapter.UpdateAdapterData(friendAccounts);
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
