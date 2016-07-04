@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:text="普通群暂未开放"
+            android:text="未填写"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -61,7 +62,7 @@
             android:id="@+id/team_info_id_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -94,7 +95,7 @@
             android:id="@+id/team_info_creator_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -127,7 +128,7 @@
             android:id="@+id/team_info_create_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
@@ -160,10 +161,15 @@
             android:id="@+id/team_info_member_count_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -187,16 +193,10 @@
             android:id="@+id/team_info_member_limit_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="群主太懒未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey" />
 
     <View
         android:layout_width="match_parent"
@@ -225,7 +225,7 @@
             android:id="@+id/team_info_intro_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="普通群暂未开放"
+            android:text="未填写"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
     </LinearLayout>
