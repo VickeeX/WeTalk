@@ -6,4 +6,5 @@
     <string name="title_activity_create_team">CreateTeamActivity</string>
     <string name="title_activity_talk_group">TalkGroupActivity</string>
     <string name="title_activity_group_info">GroupInfoActivity</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
 </resources>

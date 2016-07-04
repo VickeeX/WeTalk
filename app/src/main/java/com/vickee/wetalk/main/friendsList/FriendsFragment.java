@@ -15,7 +15,6 @@ import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.uinfo.UserService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
-import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;

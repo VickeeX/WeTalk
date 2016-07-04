@@ -1,4 +1,4 @@
-package com.vickee.wetalk.main.talkGroup;
+package com.vickee.wetalk.main.teamList;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.vickee.wetalk.main.talkGroup;
+package com.vickee.wetalk.main.teamList;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -137,7 +137,7 @@ public class TalkGroupActivity extends AppCompatActivity {
                 Toast.makeText(TalkGroupActivity.this, "GroupInfo", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_group_exit:
-                Toast.makeText(TalkGroupActivity.this, "GroupExit", Toast.LENGTH_SHORT).show();
+                exitTeam();
                 break;
             case R.id.menu_group_dismiss:
                 Toast.makeText(TalkGroupActivity.this, "GroupDismiss", Toast.LENGTH_SHORT).show();
@@ -168,14 +168,15 @@ public class TalkGroupActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                         Toast.makeText(TalkGroupActivity.this
-                                                , "删除好友成功", Toast.LENGTH_LONG).show();
+                                                , "退出该群成功", Toast.LENGTH_LONG).show();
                                     }
 
                                     @Override
                                     public void onFailed(int i) {
                                         Toast.makeText(TalkGroupActivity.this
-                                                , "删除失败，请检查网络", Toast.LENGTH_LONG).show();
+                                                , "退出失败，请检查网络", Toast.LENGTH_LONG).show();
                                     }
+
                                     @Override
                                     public void onException(Throwable throwable) {
                                     }
