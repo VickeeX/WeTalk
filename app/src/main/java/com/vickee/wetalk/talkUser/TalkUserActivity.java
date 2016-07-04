@@ -29,7 +29,8 @@ public class TalkUserActivity extends AppCompatActivity {
     private EditText content_et;
     private Button send_btn;
     private Toolbar talk_toolbar;
-    private String talkUser;
+    private String talkUserId;
+    private String talkUserName;
     private String talkObject;
     private RecyclerView recyclerView;
     private ChatMsgListAdapter chatMsgListAdapter;
@@ -46,10 +47,16 @@ public class TalkUserActivity extends AppCompatActivity {
         setSupportActionBar(talk_toolbar);
 
         Intent intent = getIntent();
-        talkUser = intent.getStringExtra("TalkPerson");
-        setTitle("好友: " + talkUser);
-        NIMClient.getService(MsgService.class).setChattingAccount(talkUser, SessionTypeEnum.P2P);
-        talkObject = talkUser;
+        talkUserId = intent.getStringExtra("TalkPersonId");
+        talkUserName = intent.getStringExtra("TalkPersonName");
+        if (talkUserName != null && talkUserName.length() != 0){
+            setTitle("好友: " + talkUserName);
+        }else{
+            setTitle("好友: " + talkUserId);
+        }
+
+        NIMClient.getService(MsgService.class).setChattingAccount(talkUserId, SessionTypeEnum.P2P);
+        talkObject = talkUserId;
 
 
         content_et = (EditText) findViewById(R.id.msgText_et);
@@ -70,10 +77,10 @@ public class TalkUserActivity extends AppCompatActivity {
                 IMMessage message;
 
                 message = MessageBuilder.createTextMessage(
-                        talkUser, SessionTypeEnum.P2P, content);
+                        talkUserId, SessionTypeEnum.P2P, content);
 
                 NIMClient.getService(MsgService.class).sendMessage(message, true);
-                Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUser);
+                Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUserId);
                 chatMsgListAdapter.UpdateAdapterData(message);
                 content_et.setText("");
 

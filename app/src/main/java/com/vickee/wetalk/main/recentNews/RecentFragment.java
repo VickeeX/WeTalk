@@ -19,6 +19,8 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.team.TeamService;
 import com.netease.nimlib.sdk.team.model.Team;
+import com.netease.nimlib.sdk.uinfo.UserService;
+import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.talkGroup.TalkGroupActivity;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
@@ -86,9 +88,10 @@ public class RecentFragment extends Fragment {
                 String recentId = recentContactList.get(position).getContactId();
                 boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
                 if ( isMyFriend ){
+                    NimUserInfo userInfo = NIMClient.getService(UserService.class).getUserInfo(recentId);
                     intent = new Intent(getActivity(), TalkUserActivity.class);
-                    intent.putExtra("TalkPerson", recentId);
-//                    intent.putExtra("Recents",recentContactList.get(position));
+                    intent.putExtra("TalkPersonId", recentId);
+                    intent.putExtra("TalkPersonName", userInfo.getName());
                 }else{
 
                     String teamName = null;

@@ -53,7 +53,7 @@ public class FriendsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(friendsListAdapter);
 
-        List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
+        final List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
         if (friendAccounts != null)
             friends.addAll(friendAccounts);
         List<NimUserInfo> users = NIMClient.getService(UserService.class).getUserInfoList(friends);
@@ -66,10 +66,9 @@ public class FriendsFragment extends Fragment {
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                String Nickname = friends.get(position);
-
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
-                intent.putExtra("TalkPerson", Nickname);
+                intent.putExtra("TalkPersonId", friendAccounts.get(position));
+                intent.putExtra("TalkPersonName", friends.get(position));
                 startActivity(intent);
             }
         });
