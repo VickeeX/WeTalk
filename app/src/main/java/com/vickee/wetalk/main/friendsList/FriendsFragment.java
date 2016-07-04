@@ -16,6 +16,7 @@ import com.netease.nimlib.sdk.uinfo.UserService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
+import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,7 @@ public class FriendsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView) view.findViewById(R.id.friendsList_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         recyclerView.setAdapter(friendsListAdapter);
 
         final List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();

@@ -15,6 +15,7 @@ import com.netease.nimlib.sdk.team.TeamService;
 import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.talkGroup.TalkGroupActivity;
+import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class TeamFragment extends Fragment {
     private TeamListAdapter teamListAdapter;
 
 
-    public TeamFragment() { }
+    public TeamFragment() {
+    }
 
 
     @Override
@@ -47,6 +49,7 @@ public class TeamFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView) view.findViewById(R.id.teamList_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         recyclerView.setAdapter(teamListAdapter);
 
         final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();

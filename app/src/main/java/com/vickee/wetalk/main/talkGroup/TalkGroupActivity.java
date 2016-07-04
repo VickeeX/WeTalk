@@ -45,7 +45,7 @@ public class TalkGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talk_group);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
@@ -75,13 +75,19 @@ public class TalkGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String content = content_et.getText().toString();
-                IMMessage message;
 
-                message = MessageBuilder.createTextMessage(
-                        talkTeamId, SessionTypeEnum.Team, content);
-                NIMClient.getService(MsgService.class).sendMessage(message, true);
-                chatMsgListAdapter.UpdateAdapterData(message);
-                content_et.setText("");
+                if (content != null && content.length() != 0) {
+                    IMMessage message;
+
+                    message = MessageBuilder.createTextMessage(
+                            talkTeamId, SessionTypeEnum.Team, content);
+                    NIMClient.getService(MsgService.class).sendMessage(message, true);
+                    chatMsgListAdapter.UpdateAdapterData(message);
+                    content_et.setText("");
+                } else {
+                    Toast.makeText(TalkGroupActivity.this, "请勿发送空消息", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

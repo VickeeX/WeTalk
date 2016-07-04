@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -49,9 +50,9 @@ public class TalkUserActivity extends AppCompatActivity {
         Intent intent = getIntent();
         talkUserId = intent.getStringExtra("TalkPersonId");
         talkUserName = intent.getStringExtra("TalkPersonName");
-        if (talkUserName != null && talkUserName.length() != 0){
+        if (talkUserName != null && talkUserName.length() != 0) {
             setTitle("好友: " + talkUserName);
-        }else{
+        } else {
             setTitle("好友: " + talkUserId);
         }
 
@@ -74,16 +75,19 @@ public class TalkUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String content = content_et.getText().toString();
-                IMMessage message;
+                if (content != null && content.length() != 0) {
+                    IMMessage message;
 
-                message = MessageBuilder.createTextMessage(
-                        talkUserId, SessionTypeEnum.P2P, content);
+                    message = MessageBuilder.createTextMessage(
+                            talkUserId, SessionTypeEnum.P2P, content);
 
-                NIMClient.getService(MsgService.class).sendMessage(message, true);
-                Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUserId);
-                chatMsgListAdapter.UpdateAdapterData(message);
-                content_et.setText("");
-
+                    NIMClient.getService(MsgService.class).sendMessage(message, true);
+                    Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUserId);
+                    chatMsgListAdapter.UpdateAdapterData(message);
+                    content_et.setText("");
+                } else {
+                    Toast.makeText(TalkUserActivity.this, "请勿发送空消息", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

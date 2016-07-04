@@ -1,13 +1,11 @@
 package com.vickee.wetalk.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 
 /**
@@ -17,14 +15,16 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
 
     private final int height;
 
-    private final Paint paint;
+    private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
+
+    private Drawable mDivider;
 
     public DividerDecoration(Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, displayMetrics);
+        final TypedArray a = context.obtainStyledAttributes(ATTRS);
+        mDivider = a.getDrawable(0);
+        a.recycle();
 
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.GRAY);
+        height = mDivider.getIntrinsicHeight();
     }
 
     @Override
@@ -38,7 +38,8 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params =
                     (RecyclerView.LayoutParams) child.getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin;
-            c.drawRect(left, top, right, height, paint);
+            mDivider.setBounds(left, top, right, top + height);
+            mDivider.draw(c);
         }
     }
 
