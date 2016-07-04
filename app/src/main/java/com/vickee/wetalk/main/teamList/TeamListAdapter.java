@@ -60,13 +60,6 @@ public class TeamListAdapter  extends RecyclerView.Adapter<TeamListAdapter.tView
         }
     }
 
-////        textView.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Toast.makeText("xid="+getPosition())
-////            }
-////        });
-
     public void UpdateAdapterData(List<Team> datas){
         mDatas.clear();
         mDatas.addAll(datas);

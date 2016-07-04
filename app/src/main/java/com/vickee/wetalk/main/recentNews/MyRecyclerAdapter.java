@@ -8,7 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
+import com.netease.nimlib.sdk.team.TeamService;
+import com.netease.nimlib.sdk.team.model.Team;
+import com.netease.nimlib.sdk.uinfo.UserService;
+import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.utils.Utils;
 
@@ -39,7 +45,25 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     @Override
     public void onBindViewHolder(final MyRecyclerAdapter.mViewHolder holder, int position) {
         RecentContact recentContact = mDatas.get(position);
-        holder.account.setText(recentContact.getContactId());
+        String recentId = recentContact.getContactId();
+        String accountSet = null;
+
+        final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
+
+        boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
+        if (isMyFriend) {
+            NimUserInfo user = NIMClient.getService(UserService.class).getUserInfo(recentId);
+            accountSet = user.getName();
+        } else {
+            for (Team team : teamList1) {
+                if (team.getId().equals(recentId)) {
+                    accountSet = team.getName();
+                }
+            }
+
+        }
+
+        holder.account.setText(accountSet);
         holder.time.setText(Utils.format(recentContact.getTime()));
         if (recentContact.getContent() != null) {
             holder.content.setText(recentContact.getContent());
