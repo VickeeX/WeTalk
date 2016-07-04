@@ -75,7 +75,6 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public void UpdateAdapterData(List<String> datas) {
         mDatas.clear();
         mDatas.addAll(datas);
-//        Log.e("Friends: ", "size=" + mDatas.size());
         notifyDataSetChanged();
     }
 

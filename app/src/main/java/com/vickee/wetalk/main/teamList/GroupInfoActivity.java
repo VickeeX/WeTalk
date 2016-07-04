@@ -52,7 +52,6 @@ public class GroupInfoActivity extends AppCompatActivity {
         intro = t.getIntroduce();
         member_count = t.getMemberCount();
         member_limit = t.getMemberLimit();
-        Log.e("TeamInfo", "id" + id + "\ncount_member:" + member_count + "\ncreator:" + creator + "\ncreate_time" + create_time + "\nmember_limit" + member_limit);
 
         info_id.setText(id);
         if (name != null && name.length() != 0) {

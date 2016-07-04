@@ -2,7 +2,6 @@ package com.vickee.wetalk.main.teamList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,14 +68,12 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.tViewH
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.team_item_tv);
             textView_sign = (TextView) itemView.findViewById(R.id.team_item_sign_tv);
-            Log.e("Team: ", "new viewholder");
         }
     }
 
     public void UpdateAdapterData(List<Team> datas) {
         mDatas.clear();
         mDatas.addAll(datas);
-        Log.e("Team: ", "size=" + mDatas.size());
         notifyDataSetChanged();
     }
 

@@ -74,8 +74,6 @@ public class RecentFragment extends Fragment {
                         // recents参数即为最近会话列表
                         if (recents != null)
                             recentContactList = recents;
-
-                        Log.e("Recents:", "size=" + recentContactList.size());
                         myRecyclerAdapter.UpdateAdapterData(recentContactList);
                     }
                 });

@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String account = account_et.getText().toString();
                 final String token = password_et.getText().toString();
-                Log.e(TAG, "onClick() called with: [" + token + "]");
 //                token = MD5.getStringMD5(token);
 
                 LoginInfo loginInfo = new LoginInfo(account, token, "048bb61b76c7b682a040589998446181");

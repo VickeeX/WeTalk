@@ -58,7 +58,6 @@ public class TalkGroupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         talkTeamId = intent.getStringExtra("TalkTeamId");
         talkTeamName = intent.getStringExtra("TalkTeamName");
-        Log.e("GetTalkGroTup:", talkTeamId);
         if (talkTeamName != null && talkTeamName.length() != 0) {
             setTitle("群组: " + talkTeamName);
         } else {
@@ -108,7 +107,6 @@ public class TalkGroupActivity extends AppCompatActivity {
                         msg.add(imMessage);
                     }
                 }
-                Log.e("GetMessage", "size=" + msg.size());
                 chatMsgListAdapter.UpdateAdapterData(msg);
             }
         };

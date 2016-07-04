@@ -2,7 +2,6 @@ package com.vickee.wetalk.main.recentNews;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,15 +100,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
             account = (TextView) itemview.findViewById(R.id.account_tv);
             content = (TextView) itemview.findViewById(R.id.content_tv);
             time = (TextView) itemview.findViewById(R.id.time_tv);
-            Log.e("Recents: ", "new viewholder");
-
         }
     }
 
     public void UpdateAdapterData(List<RecentContact> datas) {
         mDatas.clear();
         mDatas.addAll(datas);
-        Log.e("Recents: ", "size=" + mDatas.size());
         notifyDataSetChanged();
     }
 
