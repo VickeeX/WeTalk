@@ -6,12 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".UserTeamInfo.GroupInfoActivity"
-    tools:showIn="@layout/activity_group_info">
+    tools:context=".UserTeamInfo.MyInfoActivity"
+    tools:showIn="@layout/activity_my_info">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,11 +25,11 @@
             android:background="@drawable/ic_account_box_grey_300_48dp" />
 
         <TextView
-            android:id="@+id/team_info_name_tv"
+            android:id="@+id/my_info_id_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
-            android:text="未填写"
+            android:text="账号"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -47,24 +45,31 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="群号"
+            android:text="昵称"
             android:textColor="@color/blackgrey"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_id_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_nick_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改" />
     </LinearLayout>
 
 
@@ -79,25 +84,32 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="群主"
+            android:text="性别"
             android:textColor="@color/blackgrey"
 
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_creator_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_sex_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择" />
     </LinearLayout>
 
 
@@ -112,25 +124,32 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="创建时间"
+            android:text="生日"
             android:textColor="@color/blackgrey"
 
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_create_time_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_birth_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择"/>
     </LinearLayout>
 
 
@@ -145,26 +164,34 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="成员人数"
+            android:text="手机"
             android:textColor="@color/blackgrey"
 
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_member_count_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_tele_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_tele"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"/>
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -177,26 +204,34 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="人数限制"
+            android:text="邮箱"
             android:textColor="@color/blackgrey"
 
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_member_limit_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_mail_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"/>
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -209,25 +244,32 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp"
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="群简介"
+            android:text="签名"
             android:textColor="@color/blackgrey"
 
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/team_info_intro_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/my_info_sign_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="群主太懒未填写"
+            android:layout_weight="1"
+            android:text="你还未填写哟"
             android:textColor="@color/blackgrey"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/my_info_modify_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"/>
     </LinearLayout>
 
 
@@ -235,4 +277,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/grey" />
+
 </LinearLayout>

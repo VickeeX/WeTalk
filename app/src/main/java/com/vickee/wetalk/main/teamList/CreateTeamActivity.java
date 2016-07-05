@@ -23,6 +23,7 @@ import com.netease.nimlib.sdk.team.constant.VerifyTypeEnum;
 import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.WeTalkApplication;
+import com.vickee.wetalk.talkUser.TalkGroupActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

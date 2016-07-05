@@ -1,4 +1,4 @@
-package com.vickee.wetalk.talkUser;
+package com.vickee.wetalk.UserTeamInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,7 +40,7 @@ public class UserInfoActivity extends AppCompatActivity {
         if (userInfo.getName() != null && userInfo.getName().length() != 0) {
             info_name.setText(userInfo.getName());
         }
-        if (userInfo.getGenderEnum() != null && userInfo.getGenderEnum().toString().length() != 0) {
+        if (userInfo.getGenderEnum().toString() != "UNKNOWN") {
             info_sex.setText(userInfo.getGenderEnum().toString());
         }
         if (userInfo.getBirthday() != null && userInfo.getBirthday().length() != 0) {

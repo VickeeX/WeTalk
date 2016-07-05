@@ -1,4 +1,4 @@
-package com.vickee.wetalk.main.teamList;
+package com.vickee.wetalk.talkUser;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,8 +27,8 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.team.TeamService;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.UserTeamInfo.GroupInfoActivity;
 import com.vickee.wetalk.main.MainActivity;
-import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

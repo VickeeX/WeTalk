@@ -1,10 +1,9 @@
-package com.vickee.wetalk.main.teamList;
+package com.vickee.wetalk.UserTeamInfo;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.netease.nimlib.sdk.NIMClient;

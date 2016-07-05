@@ -21,7 +21,7 @@ import com.netease.nimlib.sdk.team.model.Team;
 import com.netease.nimlib.sdk.uinfo.UserService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
-import com.vickee.wetalk.main.teamList.TalkGroupActivity;
+import com.vickee.wetalk.talkUser.TalkGroupActivity;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 

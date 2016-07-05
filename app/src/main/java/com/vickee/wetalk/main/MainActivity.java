@@ -25,6 +25,7 @@ import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.friend.constant.VerifyType;
 import com.netease.nimlib.sdk.friend.model.AddFriendData;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.UserTeamInfo.MyInfoActivity;
 import com.vickee.wetalk.main.friendsList.FriendsFragment;
 import com.vickee.wetalk.main.recentNews.RecentFragment;
 import com.vickee.wetalk.main.teamList.CreateTeamActivity;
@@ -174,6 +175,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_my_info:
+                my_info();
+                break;
             case R.id.menu_add_friend:
                 addFriend();
                 break;
@@ -188,6 +192,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    public void my_info() {
+        Intent intent = new Intent(MainActivity.this, MyInfoActivity. class);
+        startActivity(intent);
+    }
 
     public void addFriend() {
 //        Toast.makeText(this, "add_friend", Toast.LENGTH_SHORT).show();

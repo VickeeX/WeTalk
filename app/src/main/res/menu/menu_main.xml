@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_my_info"
+        android:title="我的资料"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/menu_add_friend"
         android:title="添加好友"
         android:icon="@mipmap/ic_launcher"

@@ -91,16 +91,20 @@
             android:label="@string/title_activity_create_team"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".main.teamList.TalkGroupActivity"
+            android:name=".talkUser.TalkGroupActivity"
             android:label="@string/title_activity_talk_group"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".main.teamList.GroupInfoActivity"
+            android:name=".UserTeamInfo.GroupInfoActivity"
             android:label="@string/title_activity_group_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".talkUser.UserInfoActivity"
+            android:name=".UserTeamInfo.UserInfoActivity"
             android:label="@string/title_activity_user_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UserTeamInfo.MyInfoActivity"
+            android:label="@string/title_activity_my_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

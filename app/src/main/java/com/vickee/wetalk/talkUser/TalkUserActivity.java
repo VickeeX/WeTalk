@@ -28,6 +28,7 @@ import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.UserTeamInfo.UserInfoActivity;
 import com.vickee.wetalk.main.MainActivity;
 
 import java.util.ArrayList;

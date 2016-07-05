@@ -14,6 +14,7 @@ import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.team.TeamService;
 import com.netease.nimlib.sdk.team.model.Team;
 import com.vickee.wetalk.R;
+import com.vickee.wetalk.talkUser.TalkGroupActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.List;
