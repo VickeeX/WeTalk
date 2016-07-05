@@ -204,7 +204,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 , null, false);
 
         final EditText editText = (EditText) searchFriendLayout.findViewById(R.id.search_friend_dialog_et);
-        final TextView textView = (TextView) searchFriendLayout.findViewById(R.id.search_friend_dialog_tv);
 
         new AlertDialog.Builder(this).setTitle("添加用户")
                 .setView(searchFriendLayout)
@@ -217,14 +216,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 .setCallback(new RequestCallback<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-//                                        textView.setText("添加 " + searchUser + "为好友成功");
                                         Toast.makeText(getApplicationContext(),
                                                 "添加" + searchUser + "成功", Toast.LENGTH_LONG).show();
                                     }
 
                                     @Override
                                     public void onFailed(int i) {
-//                                        textView.setText("添加 " + searchUser + "为好友失败");
                                         Toast.makeText(getApplicationContext(),
                                                 "添加好友失败", Toast.LENGTH_LONG).show();
                                     }
