@@ -110,6 +110,7 @@ public class TalkGroupActivity extends AppCompatActivity {
                     }
                 }
                 chatMsgListAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
         };
         NIMClient.getService(MsgServiceObserve.class)
@@ -207,7 +208,7 @@ public class TalkGroupActivity extends AppCompatActivity {
 
             // 如果是第一次加载，updateShowTimeItem返回的就是lastShowTimeItem
             if (firstLoad) {
-//                ListViewUtil.scrollToBottom(messageListView);
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
 
             runOnUiThread(new Runnable() {

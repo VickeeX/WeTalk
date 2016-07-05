@@ -117,8 +117,9 @@ public class TalkUserActivity extends AppCompatActivity {
                         msg.add(imMessage);
                     }
                 }
-                Log.e("GetMessage", "size=" + msg.size());
+//                Log.e("GetMessage", "size=" + msg.size());
                 chatMsgListAdapter.notifyDataSetChanged();
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
         };
         NIMClient.getService(MsgServiceObserve.class)
@@ -216,7 +217,8 @@ public class TalkUserActivity extends AppCompatActivity {
 
             // 如果是第一次加载，updateShowTimeItem返回的就是lastShowTimeItem
             if (firstLoad) {
-                recyclerView.scrollToPosition(msg.size() - 1);
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+//                Log.e(TAG,"size: " + size);
 //                ListViewUtil.scrollToBottom(recyclerView);
             }
 
@@ -227,7 +229,7 @@ public class TalkUserActivity extends AppCompatActivity {
                 }
             });
 
-            Log.e(TAG, Thread.currentThread().toString());
+//            Log.e(TAG, Thread.currentThread().toString());
 
 //            refreshMessageList();
 //            messageListView.onRefreshComplete(count, LOAD_MESSAGE_COUNT, true);
