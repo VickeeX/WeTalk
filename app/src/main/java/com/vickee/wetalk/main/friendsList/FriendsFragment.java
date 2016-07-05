@@ -18,7 +18,6 @@ import com.vickee.wetalk.R;
 import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,17 +26,16 @@ public class FriendsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     //    private TextView test_riends_tv;
-    private List<String> friends;
     private RecyclerView recyclerView;
     //    private MyAdapter adapter;
     private FriendsListAdapter friendsListAdapter;
 
-    public FriendsFragment() { }
+    public FriendsFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        friends = new ArrayList<>();
         friendsListAdapter = new FriendsListAdapter(getActivity());
     }
 
@@ -56,20 +54,15 @@ public class FriendsFragment extends Fragment {
         recyclerView.setAdapter(friendsListAdapter);
 
         final List<String> friendAccounts = NIMClient.getService(FriendService.class).getFriendAccounts();
-        if (friendAccounts != null)
-            friends.addAll(friendAccounts);
-        List<NimUserInfo> users = NIMClient.getService(UserService.class).getUserInfoList(friends);
-        friends.clear();
-        for(NimUserInfo user: users){
-            friends.add(user.getName());
-        }
+
         friendsListAdapter.UpdateAdapterData(friendAccounts);
         friendsListAdapter.setOnItemClickListener(new FriendsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                NimUserInfo user = NIMClient.getService(UserService.class).getUserInfo(friendAccounts.get(position));
                 Intent intent = new Intent(getActivity(), TalkUserActivity.class);
                 intent.putExtra("TalkPersonId", friendAccounts.get(position));
-                intent.putExtra("TalkPersonName", friends.get(position));
+                intent.putExtra("TalkPersonName", user.getName());
                 startActivity(intent);
             }
         });

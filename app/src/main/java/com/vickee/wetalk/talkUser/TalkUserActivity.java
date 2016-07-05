@@ -216,7 +216,8 @@ public class TalkUserActivity extends AppCompatActivity {
 
             // 如果是第一次加载，updateShowTimeItem返回的就是lastShowTimeItem
             if (firstLoad) {
-//                ListViewUtil.scrollToBottom(messageListView);
+                recyclerView.scrollToPosition(msg.size() - 1);
+//                ListViewUtil.scrollToBottom(recyclerView);
             }
 
             runOnUiThread(new Runnable() {
