@@ -11,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.team.TeamService;
@@ -34,6 +36,8 @@ public class RecentFragment extends Fragment {
     private List<RecentContact> recentContactList;
     private RecyclerView recyclerView;
     private MyRecyclerAdapter myRecyclerAdapter;
+    private Observer<List<RecentContact>> recentObserver;
+//    private Observer<List<IMMessage>> incomingMessageObserver;
 
     public RecentFragment() {
     }
@@ -66,6 +70,17 @@ public class RecentFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         recyclerView.setAdapter(myRecyclerAdapter);
 
+        //  创建观察者对象
+        recentObserver = new Observer<List<RecentContact>>() {
+            @Override
+            public void onEvent(List<RecentContact> messages) {
+                recyclerView.setAdapter(new MyRecyclerAdapter(getActivity()));
+                myRecyclerAdapter.UpdateAdapterData(messages);
+            }
+        };
+        //  注册观察者
+        NIMClient.getService(MsgServiceObserve.class).observeRecentContact(recentObserver, true);
+
         NIMClient.getService(MsgService.class).queryRecentContacts()
                 .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
                     @Override
@@ -89,6 +104,7 @@ public class RecentFragment extends Fragment {
                     intent.putExtra("TalkPersonId", recentId);
                     intent.putExtra("TalkPersonName", userInfo.getName());
                 } else {
+
                     String teamName = null;
                     final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
                     for (Team team : teamList1) {

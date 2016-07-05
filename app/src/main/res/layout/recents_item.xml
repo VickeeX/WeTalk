@@ -21,6 +21,15 @@
             android:paddingLeft="16dp"/>
 
         <TextView
+            android:id="@+id/recent_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkgrey"
+            android:textSize="16sp"
+            android:text=""
+            android:paddingLeft="6dp" />
+
+        <TextView
             android:id="@+id/time_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

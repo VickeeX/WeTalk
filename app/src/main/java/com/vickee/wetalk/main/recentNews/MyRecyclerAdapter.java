@@ -2,6 +2,7 @@ package com.vickee.wetalk.main.recentNews;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
         }
         holder.account.setText(accountSet);
         holder.time.setText(Utils.format(recentContact.getTime()));
+
+        Log.e("UnreadMsg: ", recentContact.getUnreadCount() + "条");
+        if (recentContact.getUnreadCount() != 0) {
+            holder.status.setText("[未读" + recentContact.getUnreadCount() + "条]");
+        }
         if (recentContact.getContent() != null) {
             holder.content.setText(recentContact.getContent());
         } else {
@@ -92,12 +98,14 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
 
     class mViewHolder extends RecyclerView.ViewHolder {
         TextView account;
+        TextView status;
         TextView content;
         TextView time;
 
         public mViewHolder(View itemview) {
             super(itemview);
             account = (TextView) itemview.findViewById(R.id.account_tv);
+            status = (TextView) itemview.findViewById(R.id.recent_status_tv);
             content = (TextView) itemview.findViewById(R.id.content_tv);
             time = (TextView) itemview.findViewById(R.id.time_tv);
         }

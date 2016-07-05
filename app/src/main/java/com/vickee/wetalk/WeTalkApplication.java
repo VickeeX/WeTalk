@@ -17,7 +17,7 @@ import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
 
 
 /**
- * Created by Vickee on 2016/7/1.
+ * Created by Vickee on 2016/7/.
  */
 public class WeTalkApplication extends Application {
 
