@@ -2,17 +2,15 @@ package com.vickee.wetalk.main.friendsList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.uinfo.UserService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,15 +18,16 @@ import java.util.List;
  */
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.mViewHolder> {
 
-    private List<String> mDatas;
+    private static final String TAG = "FriendsListAdapter";
+
+    private List<NimUserInfo> mDatas;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-    private NimUserInfo friendInfo;
 
 
-    public FriendsListAdapter(Context context) {
+    public FriendsListAdapter(Context context, List<NimUserInfo> mDatas) {
         this.mContext = context;
-        mDatas = new ArrayList<>();
+        this.mDatas = mDatas;
     }
 
     @Override
@@ -39,10 +38,11 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(final mViewHolder holder, int position) {
-        friendInfo = NIMClient.getService(UserService.class).getUserInfo(mDatas.get(position));
-        holder.textView.setText(friendInfo.getName());
-        if (friendInfo.getSignature() != null && friendInfo.getSignature().length() != 0) {
-            holder.textView_sign.setText(friendInfo.getSignature());
+        if (!TextUtils.isEmpty(mDatas.get(position).getName())) {
+            holder.textView.setText(mDatas.get(position).getName());
+        }
+        if (!TextUtils.isEmpty(mDatas.get(position).getSignature())) {
+            holder.textView_sign.setText(mDatas.get(position).getSignature());
         }
 
         if (mOnItemClickListener != null) {
@@ -72,8 +72,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         }
     }
 
-    public void UpdateAdapterData(List<String> datas) {
-        mDatas.clear();
+    public void UpdateAdapterData(List<NimUserInfo> datas) {
         mDatas.addAll(datas);
         notifyDataSetChanged();
     }

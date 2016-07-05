@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.RecentContact;
 import com.netease.nimlib.sdk.team.TeamService;
@@ -28,10 +30,13 @@ import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
 public class RecentFragment extends Fragment {
+
+    private static final String TAG = "RecentFragment";
 
     private List<RecentContact> recentContactList;
     private RecyclerView recyclerView;
@@ -47,7 +52,7 @@ public class RecentFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         recentContactList = new ArrayList<>();
-        myRecyclerAdapter = new MyRecyclerAdapter(getActivity());
+        myRecyclerAdapter = new MyRecyclerAdapter(getActivity(), recentContactList);
 
         NIMClient.getService(MsgService.class).setChattingAccount
                 (MsgService.MSG_CHATTING_ACCOUNT_ALL, SessionTypeEnum.None);
@@ -70,33 +75,52 @@ public class RecentFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerDecoration(getActivity()));
         recyclerView.setAdapter(myRecyclerAdapter);
 
-        //  创建观察者对象
-        recentObserver = new Observer<List<RecentContact>>() {
-            @Override
-            public void onEvent(List<RecentContact> messages) {
-                recyclerView.setAdapter(new MyRecyclerAdapter(getActivity()));
-                myRecyclerAdapter.UpdateAdapterData(messages);
-            }
-        };
-        //  注册观察者
-        NIMClient.getService(MsgServiceObserve.class).observeRecentContact(recentObserver, true);
-
         NIMClient.getService(MsgService.class).queryRecentContacts()
                 .setCallback(new RequestCallbackWrapper<List<RecentContact>>() {
                     @Override
                     public void onResult(int code, List<RecentContact> recents, Throwable e) {
                         // recents参数即为最近会话列表
-                        if (recents != null)
-                            recentContactList = recents;
-                        myRecyclerAdapter.UpdateAdapterData(recentContactList);
+                        if (recents != null) {
+                            myRecyclerAdapter.UpdateAdapterData(recents);
+                            Log.e(TAG, "onResult() called with: " + "code = [" + code + "], recents = [" + recents + "], e = [" + e + "]");
+                        }
                     }
                 });
+
+        recentObserver = new Observer<List<RecentContact>>() {
+            @Override
+            public void onEvent(List<RecentContact> messages) {
+                List<RecentContact> newMessages = new ArrayList<>();
+                Iterator<RecentContact> iterator = recentContactList.iterator();
+                while (iterator.hasNext()) {
+                    String contactId = iterator.next().getContactId();
+
+                    for (RecentContact message : messages) {
+                        String id = message.getContactId();
+                        if (contactId.equals(id)) {
+                            newMessages.add(message);
+                            iterator.remove();
+                            break;
+                        }
+                    }
+                }
+
+                recentContactList.addAll(0, newMessages);
+
+                myRecyclerAdapter.notifyDataSetChanged();
+            }
+        };
+        //  注册观察者
+        NIMClient.getService(MsgServiceObserve.class).observeRecentContact(recentObserver, true);
 
         myRecyclerAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent;
                 String recentId = recentContactList.get(position).getContactId();
+                recentContactList.get(position).setMsgStatus(MsgStatusEnum.read);
+                myRecyclerAdapter.notifyDataSetChanged();
+
                 boolean isMyFriend = NIMClient.getService(FriendService.class).isMyFriend(recentId);
                 if (isMyFriend) {
                     NimUserInfo userInfo = NIMClient.getService(UserService.class).getUserInfo(recentId);
@@ -116,8 +140,8 @@ public class RecentFragment extends Fragment {
                     intent = new Intent(getActivity(), TalkGroupActivity.class);
                     intent.putExtra("TalkTeamId", recentId);
                     intent.putExtra("TalkTeamName", teamName);
-//                    intent.putExtra("RecentsContent",recentContactList.get(position).getContent());
-//                    intent.putExtra("RecentsId",recentContactList.get(position).getContactId());
+                    intent.putExtra("RecentsContent", recentContactList.get(position).getContent());
+                    intent.putExtra("RecentsId", recentContactList.get(position).getContactId());
                 }
                 startActivity(intent);
             }

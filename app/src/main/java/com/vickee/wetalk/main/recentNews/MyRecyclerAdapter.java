@@ -18,7 +18,6 @@ import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +31,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
 
     private OnItemClickListener mOnItemClickListener;
 
-    public MyRecyclerAdapter(Context context) {
+    public MyRecyclerAdapter(Context context, List<RecentContact> mDatas) {
         this.mContext = context;
-        mDatas = new ArrayList<>();
+        this.mDatas = mDatas;
     }
 
     @Override
@@ -112,7 +111,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.mV
     }
 
     public void UpdateAdapterData(List<RecentContact> datas) {
-        mDatas.clear();
         mDatas.addAll(datas);
         notifyDataSetChanged();
     }

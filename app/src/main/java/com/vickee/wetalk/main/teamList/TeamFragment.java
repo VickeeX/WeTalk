@@ -25,10 +25,8 @@ public class TeamFragment extends Fragment {
     private RecyclerView recyclerView;
     private TeamListAdapter teamListAdapter;
 
-
     public TeamFragment() {
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
