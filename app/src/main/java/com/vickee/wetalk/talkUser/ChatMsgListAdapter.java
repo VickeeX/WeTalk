@@ -52,26 +52,20 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((SendTxtViewHolder) holder).textView.setText(mDatas.get(position).getContent());
         } else if (holder instanceof FromTxtViewHolder) {
             ((FromTxtViewHolder) holder).textView.setText(mDatas.get(position).getContent());
+            String nick = mDatas.get(position).getFromNick();
+            if (nick != null && nick.length() != 0) {
+                ((FromTxtViewHolder) holder).textView_name.setText(mDatas.get(position).getFromNick());
+
+            } else {
+                ((FromTxtViewHolder) holder).textView_name.setText(mDatas.get(position).getFromAccount());
+            }
         }
-//        holder.textView.setText(mDatas.get(position).getContent());
     }
 
     @Override
     public int getItemCount() {
         return mDatas.size();
     }
-
-//    class cViewHolder extends RecyclerView.ViewHolder{
-//        public TextView textView;
-//        public ImageView imageView;
-//
-//        public cViewHolder(View itemView){
-//            super(itemView);
-//            textView = (TextView)itemView.findViewById(R.id.tv_item_send_txt);
-//            imageView = (ImageView)itemView.findViewById(R.id.person_image);
-//        }
-//    }
-
 
     class SendTxtViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
@@ -86,11 +80,13 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     class FromTxtViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public TextView textView_name;
         public ImageView imageView;
 
         public FromTxtViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.tv_item_send_txt);
+            textView_name = (TextView) itemView.findViewById(R.id.tv_item_send_name_txt);
             imageView = (ImageView) itemView.findViewById(R.id.person_image);
         }
     }
@@ -117,7 +113,6 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else {
             return 1;
         }
-
 //        return super.getItemViewType(positon);
     }
 }

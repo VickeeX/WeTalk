@@ -1,4 +1,4 @@
-package com.vickee.wetalk.main.friendsList;
+package com.vickee.wetalk.talkUser;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,8 +29,6 @@ import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.MainActivity;
-import com.vickee.wetalk.talkUser.ChatMsgListAdapter;
-import com.vickee.wetalk.talkUser.UserInfoActivity;
 
 import java.util.ArrayList;
 import java.util.List;

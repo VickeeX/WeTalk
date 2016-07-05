@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,7 @@ import com.netease.nimlib.sdk.uinfo.UserService;
 import com.netease.nimlib.sdk.uinfo.model.NimUserInfo;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.main.teamList.TalkGroupActivity;
-import com.vickee.wetalk.main.friendsList.TalkUserActivity;
+import com.vickee.wetalk.talkUser.TalkUserActivity;
 import com.vickee.wetalk.widget.DividerDecoration;
 
 import java.util.ArrayList;

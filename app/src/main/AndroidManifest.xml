@@ -84,7 +84,7 @@
             android:value="com.netease.nimlib.service.NimReceiver" />
 
         <activity
-            android:name=".main.friendsList.TalkUserActivity"
+            android:name=".talkUser.TalkUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".main.teamList.CreateTeamActivity"

@@ -21,19 +21,39 @@
         android:paddingLeft="12dp"
         android:background="@drawable/contact_person_logo" />
 
-    <TextView
-        android:id="@+id/tv_item_send_txt"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
-        android:gravity="center_vertical"
-        android:paddingBottom="6dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="16dp"
-        android:paddingTop="6dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_item_send_name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="16dp"
+            android:paddingTop="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_item_send_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="16dp"
+            android:paddingTop="6dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
 
     <!--android:layout_marginLeft="110dp"-->
     <!--android:layout_marginRight="10dp"-->
