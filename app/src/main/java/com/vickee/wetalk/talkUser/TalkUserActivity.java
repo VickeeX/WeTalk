@@ -99,6 +99,7 @@ public class TalkUserActivity extends AppCompatActivity {
                     NIMClient.getService(MsgService.class).sendMessage(message, true);
                     Log.e("SendMessage", "from:" + message.getFromAccount() + ", to:" + talkUserId);
                     chatMsgListAdapter.UpdateAdapterData(message);
+                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
                     content_et.setText("");
                 } else {
                     Toast.makeText(TalkUserActivity.this, "请勿发送空消息", Toast.LENGTH_SHORT).show();
@@ -177,11 +178,6 @@ public class TalkUserActivity extends AppCompatActivity {
             }
         }
 
-        /**
-         * 历史消息加载处理
-         *
-         * @param messages
-         */
         private void onMessageLoaded(List<IMMessage> messages) {
             int count = messages.size();
 
