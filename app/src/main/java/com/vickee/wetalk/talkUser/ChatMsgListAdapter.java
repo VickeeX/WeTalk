@@ -14,7 +14,6 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.WeTalkApplication;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,9 +24,9 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context mContext;
     private String userAccount;
 
-    public ChatMsgListAdapter(Context context) {
+    public ChatMsgListAdapter(Context context, List<IMMessage> mDatas) {
         this.mContext = context;
-        mDatas = new ArrayList<>();
+        this.mDatas = mDatas;
 
         SharedPreferences sp = context.getApplicationContext().getSharedPreferences(WeTalkApplication.USER, Context.MODE_PRIVATE);
         userAccount = sp.getString(WeTalkApplication.ACCOUNT, "");

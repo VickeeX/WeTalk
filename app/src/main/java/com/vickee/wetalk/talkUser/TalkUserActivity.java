@@ -21,20 +21,25 @@ import android.widget.Toast;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.RequestCallbackWrapper;
 import com.netease.nimlib.sdk.friend.FriendService;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
+import com.netease.nimlib.sdk.msg.model.QueryDirectionEnum;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.UserTeamInfo.UserInfoActivity;
 import com.vickee.wetalk.main.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TalkUserActivity extends AppCompatActivity {
+
+    private static final String TAG = "TalkUserActivity";
 
     //    private TextView talkUser_tv;
     private EditText content_et;
@@ -74,7 +79,7 @@ public class TalkUserActivity extends AppCompatActivity {
         send_btn = (Button) findViewById(R.id.sendMsg_btn);
 
         msg = new ArrayList<>();
-        chatMsgListAdapter = new ChatMsgListAdapter(this);
+        chatMsgListAdapter = new ChatMsgListAdapter(this, msg);
 
         recyclerView = (RecyclerView) findViewById(R.id.msgShow_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,22 +106,133 @@ public class TalkUserActivity extends AppCompatActivity {
             }
         });
 
+        // MessageLoader
+        new MessageLoader(null, false);
 
         incomingMessageObserver = new Observer<List<IMMessage>>() {
             @Override
             public void onEvent(List<IMMessage> messages) {
-                msg.clear();
                 for (IMMessage imMessage : messages) {
                     if (imMessage.getSessionId().equals(talkObject)) {
                         msg.add(imMessage);
                     }
                 }
                 Log.e("GetMessage", "size=" + msg.size());
-                chatMsgListAdapter.UpdateAdapterData(msg);
+                chatMsgListAdapter.notifyDataSetChanged();
             }
         };
         NIMClient.getService(MsgServiceObserve.class)
                 .observeReceiveMessage(incomingMessageObserver, true);
+    }
+
+    private class MessageLoader {
+
+        private static final int LOAD_MESSAGE_COUNT = 20;
+
+        private QueryDirectionEnum direction = null;
+
+        private IMMessage anchor;
+        private boolean remote;
+
+        private boolean firstLoad = true;
+
+        public MessageLoader(IMMessage anchor, boolean remote) {
+            this.anchor = anchor;
+            this.remote = remote;
+            if (remote) {
+                loadFromRemote();
+            } else {
+                loadFromLocal(anchor == null ? QueryDirectionEnum.QUERY_OLD : QueryDirectionEnum.QUERY_NEW);
+            }
+        }
+
+        private RequestCallback<List<IMMessage>> callback = new RequestCallbackWrapper<List<IMMessage>>() {
+            @Override
+            public void onResult(int code, List<IMMessage> messages, Throwable exception) {
+                if (messages != null) {
+                    onMessageLoaded(messages);
+                }
+            }
+        };
+
+        private void loadFromLocal(QueryDirectionEnum direction) {
+            this.direction = direction;
+            NIMClient.getService(MsgService.class).queryMessageListEx(anchor(), direction, LOAD_MESSAGE_COUNT, true)
+                    .setCallback(callback);
+        }
+
+        private void loadFromRemote() {
+            this.direction = QueryDirectionEnum.QUERY_OLD;
+            NIMClient.getService(MsgService.class).pullMessageHistory(anchor(), LOAD_MESSAGE_COUNT, true)
+                    .setCallback(callback);
+        }
+
+        private IMMessage anchor() {
+            if (msg.size() == 0) {
+                return anchor == null ? MessageBuilder.createEmptyMessage(talkUserId, SessionTypeEnum.P2P, 0) : anchor;
+            } else {
+                int index = (direction == QueryDirectionEnum.QUERY_NEW ? msg.size() - 1 : 0);
+                return msg.get(index);
+            }
+        }
+
+        /**
+         * 历史消息加载处理
+         *
+         * @param messages
+         */
+        private void onMessageLoaded(List<IMMessage> messages) {
+            int count = messages.size();
+
+            if (remote) {
+                Collections.reverse(messages);
+            }
+
+            if (firstLoad && msg.size() > 0) {
+                // 在第一次加载的过程中又收到了新消息，做一下去重
+                for (IMMessage message : messages) {
+                    for (IMMessage item : msg) {
+                        if (item.isTheSame(message)) {
+                            msg.remove(item);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (firstLoad && anchor != null) {
+                msg.add(anchor);
+            }
+
+            List<IMMessage> result = new ArrayList<>();
+            for (IMMessage message : messages) {
+                result.add(message);
+            }
+            if (direction == QueryDirectionEnum.QUERY_NEW) {
+                msg.addAll(result);
+            } else {
+                msg.addAll(0, result);
+            }
+
+            // 如果是第一次加载，updateShowTimeItem返回的就是lastShowTimeItem
+            if (firstLoad) {
+//                ListViewUtil.scrollToBottom(messageListView);
+            }
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    chatMsgListAdapter.notifyDataSetChanged();
+                }
+            });
+
+            Log.e(TAG, Thread.currentThread().toString());
+
+//            refreshMessageList();
+//            messageListView.onRefreshComplete(count, LOAD_MESSAGE_COUNT, true);
+
+            firstLoad = false;
+        }
     }
 
     @Override
