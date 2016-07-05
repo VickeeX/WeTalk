@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.vickee.wetalk.R;
 import com.vickee.wetalk.WeTalkApplication;
@@ -49,8 +50,8 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof SendTxtViewHolder) {
             ((SendTxtViewHolder) holder).textView.setText(mDatas.get(position).getContent());
-//            Log.e("MsgSend","status: "+mDatas.get(position).getStatus());
-            if (mDatas.get(position).getStatus().toString() != "success") {
+            Log.e("MsgSend", "status: " + mDatas.get(position).getStatus());
+            if (mDatas.get(position).getStatus() != MsgStatusEnum.success) {
                 ((SendTxtViewHolder) holder).send_failed.setImageResource(R.drawable.ic_error_outline_red_800_24dp);
             }
         } else if (holder instanceof FromTxtViewHolder) {
