@@ -89,7 +89,6 @@ public class RecentFragment extends Fragment {
                     intent.putExtra("TalkPersonId", recentId);
                     intent.putExtra("TalkPersonName", userInfo.getName());
                 } else {
-
                     String teamName = null;
                     final List<Team> teamList1 = NIMClient.getService(TeamService.class).queryTeamListBlock();
                     for (Team team : teamList1) {

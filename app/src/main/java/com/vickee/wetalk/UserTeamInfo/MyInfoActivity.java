@@ -39,6 +39,7 @@ public class MyInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("我的资料");
 
         SharedPreferences sp = this.getApplicationContext().getSharedPreferences(WeTalkApplication.USER, Context.MODE_PRIVATE);
         userAccount = sp.getString(WeTalkApplication.ACCOUNT, "");

@@ -49,6 +49,10 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof SendTxtViewHolder) {
             ((SendTxtViewHolder) holder).textView.setText(mDatas.get(position).getContent());
+//            Log.e("MsgSend","status: "+mDatas.get(position).getStatus());
+            if (mDatas.get(position).getStatus().toString() != "success") {
+                ((SendTxtViewHolder) holder).send_failed.setImageResource(R.drawable.ic_error_outline_red_800_24dp);
+            }
         } else if (holder instanceof FromTxtViewHolder) {
             ((FromTxtViewHolder) holder).textView.setText(mDatas.get(position).getContent());
             String nick = mDatas.get(position).getFromNick();
@@ -69,9 +73,11 @@ public class ChatMsgListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     class SendTxtViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
         public ImageView imageView;
+        public ImageView send_failed;
 
         public SendTxtViewHolder(View itemView) {
             super(itemView);
+            send_failed = (ImageView) itemView.findViewById(R.id.own_msg_failed);
             textView = (TextView) itemView.findViewById(R.id.tv_item_send_txt_own);
             imageView = (ImageView) itemView.findViewById(R.id.own_person_image);
         }

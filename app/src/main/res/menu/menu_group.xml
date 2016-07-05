@@ -15,7 +15,7 @@
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_group_dismiss"
-        android:title="解散群"
+        android:title="邀请好友"
         android:icon="@mipmap/ic_launcher"
         app:showAsAction="never" />
 </menu>

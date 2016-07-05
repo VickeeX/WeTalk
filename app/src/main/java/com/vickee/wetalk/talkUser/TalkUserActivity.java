@@ -178,6 +178,7 @@ public class TalkUserActivity extends AppCompatActivity {
             }
         }
 
+
         private void onMessageLoaded(List<IMMessage> messages) {
             int count = messages.size();
 

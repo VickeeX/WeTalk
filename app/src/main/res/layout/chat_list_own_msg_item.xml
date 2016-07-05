@@ -23,6 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/own_msg_failed"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_toStartOf="@+id/tv_item_send_txt_own"
+            android:layout_toLeftOf="@+id/tv_item_send_txt_own"
+            android:paddingRight="6dp" />
         <TextView
             android:id="@+id/tv_item_send_txt_own"
             android:layout_width="match_parent"
@@ -31,7 +38,6 @@
             android:layout_toLeftOf="@+id/own_person_image"
             android:gravity="end"
             android:paddingBottom="6dp"
-            android:paddingLeft="16dp"
             android:paddingRight="8dp"
             android:paddingTop="6dp"
             android:textColor="@android:color/black"
@@ -43,7 +49,7 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/contact_person_logo"
+            android:background="@drawable/ic_person_outline_grey_500_48dp"
             android:paddingRight="12dp"/>
         <!--android:layout_marginLeft="110dp"-->
         <!--android:layout_marginRight="10dp"-->

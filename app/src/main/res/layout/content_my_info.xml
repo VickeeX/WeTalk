@@ -49,7 +49,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="昵称"
@@ -88,7 +88,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="性别"
@@ -128,7 +128,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="生日"
@@ -168,7 +168,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="手机"
@@ -208,7 +208,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="邮箱"
@@ -248,7 +248,7 @@
         android:paddingTop="10dp">
 
         <TextView
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:text="签名"

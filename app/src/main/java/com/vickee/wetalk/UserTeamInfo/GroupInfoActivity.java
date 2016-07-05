@@ -31,6 +31,7 @@ public class GroupInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("群资料");
 
         Intent intent = getIntent();
         talkTeamId = intent.getStringExtra("TalkTeamId");

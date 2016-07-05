@@ -91,6 +91,7 @@ public class TalkGroupActivity extends AppCompatActivity {
                             talkTeamId, SessionTypeEnum.Team, content);
                     NIMClient.getService(MsgService.class).sendMessage(message, true);
                     chatMsgListAdapter.UpdateAdapterData(message);
+                    recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
                     content_et.setText("");
                 } else {
                     Toast.makeText(TalkGroupActivity.this, "请勿发送空消息", Toast.LENGTH_SHORT).show();
@@ -251,7 +252,8 @@ public class TalkGroupActivity extends AppCompatActivity {
                 exitTeam();
                 break;
             case R.id.menu_group_dismiss:
-                Toast.makeText(TalkGroupActivity.this, "GroupDismiss", Toast.LENGTH_SHORT).show();
+                new_member();
+                break;
             default:
                 break;
         }
@@ -292,6 +294,42 @@ public class TalkGroupActivity extends AppCompatActivity {
                                     public void onException(Throwable throwable) {
                                     }
                                 });
+                    }
+                }).setNegativeButton("取消", null).show();
+    }
+
+
+    public void new_member() {
+        LayoutInflater searchFriendInflater = getLayoutInflater();
+        View searchFriendLayout = searchFriendInflater.inflate(R.layout.search_dialog
+                , null, false);
+        final EditText editText = (EditText) searchFriendLayout.findViewById(R.id.search_friend_dialog_et);
+
+        new AlertDialog.Builder(this).setTitle("邀请好友入群")
+                .setView(searchFriendLayout)
+                .setPositiveButton("邀请", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final String inviteMember = editText.getText().toString();
+                        List<String> invite = new ArrayList<>();
+                        invite.add(inviteMember);
+                        NIMClient.getService(TeamService.class).addMembers(talkTeamId, invite)
+                                .setCallback(new RequestCallback<Void>() {
+                                    @Override
+                                    public void onSuccess(Void param) {
+                                        Toast.makeText(TalkGroupActivity.this, "邀请 " + inviteMember + " 入群成功", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onFailed(int code) {
+                                        Toast.makeText(TalkGroupActivity.this, "邀请失败，用户不存在或网络连接错误", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onException(Throwable exception) {
+                                    }
+                                });
+
                     }
                 }).setNegativeButton("取消", null).show();
     }
