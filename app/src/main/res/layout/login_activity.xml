@@ -70,14 +70,14 @@
             <Button
                 android:id="@+id/bt_register"
                 android:layout_width="110dip"
-                android:layout_height="35dip"
+                android:layout_height="45dip"
                 android:background="@drawable/login_button1"
                 android:gravity="center"
                 android:text="注册" />
             <Button
                 android:id="@+id/bt_login"
                 android:layout_width="110dip"
-                android:layout_height="35dip"
+                android:layout_height="45dip"
                 android:background="@drawable/login_btn_selector"
                 android:gravity="center"
                 android:text="登陆" />
